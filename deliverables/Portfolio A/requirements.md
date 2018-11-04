@@ -21,6 +21,17 @@
 1. **End Users**: The people who will be using our software, Once it has been fully developed.
 2. **Consultants**: People who would use our software to provide expert advice professionally for advertising.
 3. **Non profit groups**: Orginizations that could use our software to promote a particular social cause or promoting for a shared point of view, where no part of the organization's income is distributed to its members, directors, or officers.
+4. **The General public**: People who may be interested in finding the sentiment of a post.
+
+---
+
+
+
+## Functional Requirements
+
+1. The software should be able to extract insights from social media posts related to technology.
+2. It must display an overall rating of a query given by the user.
+3. 
 
 
 
