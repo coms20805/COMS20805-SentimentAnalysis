@@ -24,6 +24,9 @@
   1. **Non-profit groups**: Organisations that could use our software to promote a particular social cause or promoting for a shared point of view, where no part of the organisation's income is distributed to its members, directors, or officers.
   1. **The general public**: People who may be interested in finding the sentiment of a post.
 
+## Use-case diagram
+![Use-case diagram](includes/use-case.png)
+
 ---
 
 ## Functional Requirements
