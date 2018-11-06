@@ -6,15 +6,15 @@
 1.  **Client**: The software company Ghyston, represented by Mr Richard Meal
 1. **Software Development Team**: The team will be managing, testing, updating and developing this Open source software for our client
 
-**Team Members consist of:**
-* Navya Zaveri
+**Software Development Team consists of:**
 * Ben Price (Team Leader)
+* Navya Zaveri
 * Tharidu Jayaratne
 * Martynas Noruišis
 
 **Supporting Team**:
-* The resource managers at the University of Bristol will be providing us with funding if necessary
-* **Our mentor** Nuha Tumia, a third year student. Will be helping us with any technical difficulties, throughout the development stage.
+* **Resource Managers** at the University of Bristol will be providing us with funding if necessary
+* **Our Mentor** Nuha Tumia, a third year student. Will be helping us with any technical difficulties, throughout the development stage.
 * **Development Managers** Dr Daniel Schien and Dr Simon Lock will be supervising us throughout the stages of development and testing.
 
 ### II. External Stakeholders
@@ -28,15 +28,15 @@
 
 ## Functional Requirements
 
-1. The software should be able to extract insights from social media posts related to technology.
+1. The software shall be able to extract insights from social media posts related to technology.
 1. It must display an overall rating of a query given by the user.
+1. It must display a list of up to 10 related posts for every successful query.
 
 ## Non-functional Requirements
-1. Performance
+1. **Performance**: The software must be able to handle up to 36 requests per second
   * Rough estimate of requests per second (at peak times)
     * 4.7 million developers in Europe
     * Each making 20 requests
     * Let's assume they all access our website in the same 2 hour period
     * 4.7M * 20 / 365 / 2 / 60 / 60 = 36 requests per second
-1. Legislative
-  * Released under the appropriate open source licence
+1. **Legislative**: The software shall be released under the appropriate open source licence
