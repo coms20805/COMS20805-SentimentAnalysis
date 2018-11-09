@@ -42,4 +42,8 @@
     * Each making 20 requests
     * Let's assume they all access our website in the same 2 hour period
     * 4.7M * 20 / 365 / 2 / 60 / 60 = 36 requests per second
-1. **Legislative**: The software shall be released under the appropriate open source licence
+1. **Legislative**: The software shall be released under the MIT licence.
+1. **Usability**: The software shall be usable.
+  * We will test it by showing it to a small sample of users and observing how they interact with it. Users will be asked for feedback via a questionnaire.
+  * Users will rate the usability on a scale 1-10. The average score shall be >7.
+1. **Ethical**: To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
