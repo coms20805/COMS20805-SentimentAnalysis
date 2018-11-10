@@ -25,7 +25,7 @@
   5. **The general public**: People who may be interested in finding the sentiment of a post.
 
 ## Use-case diagram
-![Use-case diagram](includes/use-case.png)
+![Use-case diagram](includes/Newusecase.xml)
 
 ---
 
@@ -33,14 +33,14 @@
 
 1. The software will be able to extract insights from social media posts related to technology.
 2. It must display an overall rating of a query given by the user.
-3. It must display a list of up to 10 related posts for every successful query.
+3. It must display a list of up to 10 related posts for every successful query. If there are fewer than 10 posts, the front end will display all posts related to its respected query.
 4. When a malformed query is provided *fuzzy matching* will take place.
 * The algorithm will find correspondences between segments of a text and entries in our database of previous translations.
 5. Our rest API should be *idempotent*.
   * Our algorithm can be applied multiple times without affecting the result beyond initial application.
-6. Database will be updated regularly
-* The development team will be responsible for maintaining and updating the system .
-7. Elastic search?
+6. Database will be updated at least once a week.
+* The development team will be responsible for maintaining and updating the system, with new posts.
+7. The application uses the Elastic search engine to
 
 ## Non-functional Requirements
 1. **Performance**: The software shall be able to handle up to 36 requests per second
@@ -50,7 +50,7 @@
     * Let's assume they all access our website in the same 2 hour period
     * 4.7M * 20 / 365 / 2 / 60 / 60 = 36 requests per second
 2. **Legislative**: The software shall be released under the MIT licence.
-3. **Usability**: We aim to make our software as usable by testing on its:
+3. **Usability**: We aim to make our software as usable as possible by testing on its:
 *  ***Time-on-task***
 * ***Success-rate***
 *  ***Efficiency***: This will be tested through unit and system integration tests, to ensure our product delivers the result as fast as possible.
@@ -60,3 +60,6 @@
     * Users will rate the usability on a scale 1-10. The average score shall be >7.
 4. **Ethical**: To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
 5. **Front-End**: We aim to make our Interface as user friendly as possible by:
+* Keeping a minimalistic look to
+7. **Security**: We shall ensure that no user can alter our database through the queries they submit. This will be tested through our unit testing.
+8.
