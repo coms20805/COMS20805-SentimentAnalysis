@@ -15,7 +15,7 @@
 3. **Supporting Team**:
 * **Resource Managers** at the University of Bristol will be providing us with funding if necessary
 * **Our Mentor** Nuha Tumia, a third year student. Will be helping us with any technical difficulties, throughout the development stage.
-* **Development Managers** Dr Daniel Schien and Dr Simon Lock will be supervising us throughout the stages of development and testing.
+* **Development Managers** Dr Daniel Schien and Dr Simon Lock will be supervising and teaching us the fundamentals of Software development throughout the stages of development and testing stages.
 
 ### II. External Stakeholders
 1. **Developers**: The developers of the open source software that we will be generating sentiment scores for.
@@ -43,23 +43,34 @@
 7. The application uses the Elastic search engine to
 
 ## Non-functional Requirements
-1. **Performance**: The software shall be able to handle up to 36 requests per second
+### 1.  Performance
+*  The software shall be able to handle up to 36 requests per second
   * Rough estimate of requests per second (at peak times)
     * 4.7 million developers in Europe
     * Each making 20 requests
     * Let's assume they all access our website in the same 2 hour period
-    * 4.7M * 20 / 365 / 2 / 60 / 60 = 36 requests per second
-2. **Legislative**: The software shall be released under the MIT licence.
-3. **Usability**: We aim to make our software as usable as possible by testing on its:
-*  ***Time-on-task***
-* ***Success-rate***
-*  ***Efficiency***: This will be tested through unit and system integration tests, to ensure our product delivers the result as fast as possible.
- * ***Memorability***: When a user returns to the application after a period of not using it, the user shall remember enough to use it effectively the next time.
+    * [(4.7M * 20 requests) / 365 days] / 2hr / 60min / 60sec = 36 requests per second
+### 2.  Legislative
+* The software shall be released under the MIT licence.
+### 3. Usability
+* We aim to make our software as usable as possible by testing on its:
+  * **Success-rate**: The accuracy of the algorithm will be tested using our questionare
+  *  **Efficiency**: This will be tested through unit and system integration tests, to ensure our product delivers the result as fast as possible.
 
-  * We will be testing this by showing our product to a small sample of users and observing how they interact with it. Users will be asked for feedback via a questionnaire*.
-    * Users will rate the usability on a scale 1-10. The average score shall be >7.
-4. **Ethical**: To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
-5. **Front-End**: We aim to make our Interface as user friendly as possible by:
-* Keeping a minimalistic look to
-7. **Security**: We shall ensure that no user can alter our database through the queries they submit. This will be tested through our unit testing.
-8.
+   * **Memorability**: When a user returns to the application after a period of not using it, the user shall remember enough to use it effectively the next time.
+
+  *We will be testing Usablility by showing our product to a small sample of users and observing how they interact with it. Users will be asked for feedback via a questionnaire. Users will rate the usability on a scale 1-10. The average score shall be >7.*
+
+
+
+### 4. Ethical
+* To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
+
+### 5. Front-End
+* We aim to make our Interface as user friendly as possible by:
+  * Keeping a minimalistic look to show that everything has a clear meaning.
+  * Having an instantly noticeable search bar with a *Call-To-Action* search button.
+
+
+### 6. Security
+* We shall ensure that no user can alter our database through the queries they submit. This will be tested through our unit testing.
