@@ -3,7 +3,7 @@
 ## System Stakeholders
 
 ### I. Internal Stakeholders
-1.  **Client**: The software company Ghyston, represented by Mr Richard Meal
+1.  **Client**: The software company Ghyston, represented by Mr Richard Meal.
 2. **Software Development Team**: The team will be managing, testing, updating and developing this Open source software for our client.
 
 **Software Development Team consists of:**
@@ -25,7 +25,7 @@
   5. **The general public**: People who may be interested in finding the sentiment of a post.
 
 ## Use-case diagram
-![Use-case diagram](includes/Newusecase.xml)
+![](https://github.com/NavyaZaveri/COMS20805-SentimentAnalysis/blob/master/deliverables/Portfolio%20A/includes/Newusecase.xml)
 
 ---
 
