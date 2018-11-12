@@ -25,7 +25,7 @@
   5. **The general public**: People who may be interested in finding the sentiment of a post.
 
 ## Use-case diagram
-![Use-case](https://github.com/NavyaZaveri/COMS20805-SentimentAnalysis/blob/master/deliverables/Portfolio%20A/includes/Newusecase.xml)
+![Use-case](https://github.com/NavyaZaveri/COMS20805-SentimentAnalysis/blob/master/deliverables/Portfolio%20A/includes/use-case3.png)
 
 ---
 
