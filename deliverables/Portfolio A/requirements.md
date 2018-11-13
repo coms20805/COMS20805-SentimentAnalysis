@@ -75,5 +75,29 @@
 
 ## Use-case diagram
 
+## Use-case goals
+1. User – submit query and receive result. Flow:
+  1. Submit query
+  1. Run query through the Elasticsearch engine
+  1. Match the query to posts in database
+  1. Display the result to the user in the right format
+1. ML module – scrape for posts and populate the database
+  1. Run instances of the different scrapers
+  1. Determine the sentiment values of the scraped posts
+  1. Push resulting objects to the Elasticsearch database
 
+![Diagram for goal "User – submit query and receive result"](includes/use-case3.png')
+
+### Alternative flow for "User – submit query and receive result"
+1. Submit query
+1. Run query through the Elasticsearch engine
+1. No matches, perform fuzzy matching
+1. Posts found, display the result to the user in the right format
+
+### Exceptional flow for "User – submit query and receive result"
+1. Submit query
+1. Run query through the Elasticsearch engine
+1. No matches, perform fuzzy matching
+1. No matches
+1. Display an error to the user
 ---
