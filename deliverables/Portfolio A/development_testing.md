@@ -10,6 +10,11 @@ We will use integration testing to verify that the components of our application
 
 We will also use unit tests to ensure our front-end React components behave as intended. For instance, checking that clicking the ‘search’ button sends a query, and checking that the results of a query are shown to the user in the correct format.
 
+
+## Sentiment Analysis
+Given that Machine Learning is non-deterministic, we cannot write unit-tests to test our model. As such, we have decided *not* to build our own model but to use a popular out-of-the-box sentiment analysis library, and manually test it on a collection of random posts representative of our task. If it performs well enough on such posts, we use it as is. If it doesn't meet our expectations, we either look at different libraries or tweak the parameters of the API model and determine what option best suits our needs.
+
+
 ## Challenges
 
 One challenge we face is testing the machine learning part of our application. It will be difficult to test the accuracy of the sentiment scores given to posts, because the process is inherently non-deterministic, which means we cannot predict a specific score for a test post. In order to overcome this, we plan to use sanity checking. We will give our sentiment analyser a very positive and a very negative post and check that the sentiment scores are greater and less than 0.5 respectively. These tests can be put into unit tests, so when changes are made to the machine learning part of our application, we will at least be able to make sure it is sane.
