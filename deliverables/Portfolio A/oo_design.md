@@ -14,8 +14,6 @@ The overall structure of the application will be as follows:
 
 This is a sample of a class diagram for a class within our application. The Post class is an important one in our system as Post objects will form the basis for our Elasticsearch database. This diagram illustrates the structure of a Post object and its relationship with the scrapers.
 
-// Is this really aggregation?
-
 ## Dynamic UML example
 ![Sequence diagram](includes/sequence-diagram.png)
 
