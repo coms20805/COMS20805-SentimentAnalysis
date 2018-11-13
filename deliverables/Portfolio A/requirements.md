@@ -14,7 +14,7 @@
 
 3. **Supporting Team**:
 * **Resource Managers** at the University of Bristol will be providing us with funding if necessary
-* **Our Mentor** Nuha Tumia, a third year student. Will be helping us with any technical difficulties, throughout the development stage.
+* **Our Mentor** Nuha Tumia, a third-year student. Will be helping us with any technical difficulties, throughout the development stage.
 * **Development Managers** Dr Daniel Schien and Dr Simon Lock will be supervising and teaching us the fundamentals of Software development throughout the stages of development and testing stages.
 
 ### II. External Stakeholders
@@ -24,10 +24,7 @@
   4. **Non-profit groups**: Organisations that could use our software to promote a particular social cause or promoting for a shared point of view, where no part of the organisation's income is distributed to its members, directors, or officers.
   5. **The general public**: People who may be interested in finding the sentiment of a post.
 
-## Use-case diagram
-![Use-case](https://github.com/NavyaZaveri/COMS20805-SentimentAnalysis/blob/master/deliverables/Portfolio%20A/includes/use-case3.png)
-
----
+-------
 
 ## Functional Requirements
 
@@ -38,9 +35,9 @@
 * The algorithm will find correspondences between segments of a text and entries in our database of previous translations.
 5. Our rest API should be *idempotent*.
   * Our algorithm can be applied multiple times without affecting the result beyond initial application.
-6. Database will be updated at least once a week.
+6. The database will be updated at least once a week.
 * The development team will be responsible for maintaining and updating the system, with new posts.
-7. The application uses the Elastic search engine to
+7. The application uses the Elastic search engine to retrieve the closest match to a given query.
 
 ## Non-functional Requirements
 ### 1.  Performance
@@ -54,23 +51,29 @@
 * The software shall be released under the MIT licence.
 ### 3. Usability
 * We aim to make our software as usable as possible by testing on its:
-  * **Success-rate**: The accuracy of the algorithm will be tested using our questionare
-  *  **Efficiency**: This will be tested through unit and system integration tests, to ensure our product delivers the result as fast as possible.
+  * **Success-rate**: The accuracy of the algorithm will be tested using our questionnaire
+  *  **Efficiency**: This will be tested through the unit and system integration tests, to ensure our product delivers the result as fast as possible.
 
    * **Memorability**: When a user returns to the application after a period of not using it, the user shall remember enough to use it effectively the next time.
+   *  **User-Interface**
+      * We aim to make our Interface as user-friendly as possible by:
 
-  *We will be testing Usablility by showing our product to a small sample of users and observing how they interact with it. Users will be asked for feedback via a questionnaire. Users will rate the usability on a scale 1-10. The average score shall be >7.*
+        * Keeping a minimalistic look to show that everything has a clear meaning.
+        * Having an instantly noticeable search bar with a *Call-To-Action* search button.
 
+ ![Search bar](https://github.com/NavyaZaveri/COMS20805-SentimentAnalysis/blob/master/deliverables/Portfolio%20A/includes/mockup-searchbar.png)
+
+![Result page](https://github.com/NavyaZaveri/COMS20805-SentimentAnalysis/blob/master/deliverables/Portfolio%20A/includes/mockup-results.png)
+
+  *We will be testing Usability by showing our product to a small sample of users and observing how they interact with it. Users will be asked for feedback via a questionnaire. Users will rate the usability on a scale 1-10. The average score shall be >7.*
 
 
 ### 4. Ethical
 * To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
 
-### 5. Front-End
-* We aim to make our Interface as user friendly as possible by:
-  * Keeping a minimalistic look to show that everything has a clear meaning.
-  * Having an instantly noticeable search bar with a *Call-To-Action* search button.
+----
+
+## Use-case diagram
 
 
-### 6. Security
-* We shall ensure that no user can alter our database through the queries they submit. This will be tested through our unit testing.
+---
