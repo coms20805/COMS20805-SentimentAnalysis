@@ -86,7 +86,7 @@
   1. Determine the sentiment values of the scraped posts
   1. Push resulting objects to the Elasticsearch database
 
-![Diagram for goal "User – submit query and receive result"](includes/use-case3.png')
+![Diagram for goal "User – submit query and receive result"](includes/use-case3.png)
 
 ### Alternative flow for "User – submit query and receive result"
 1. Submit query
