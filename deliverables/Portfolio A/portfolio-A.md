@@ -4,8 +4,7 @@
 * [OO Design & UML](#oodesign)
 * [Development Testing](#testing)
 
-<a name="overview" />
-# Overview
+# Overview <a name="overview" />
 
 In today's technology-driven world, social media sites such as Twitter and Reddit have become the most prominent platforms to express one's opinion and influence advertising on a global scale. According to Northeastern University (Boston, MA, USA), an estimated 80% of the world's data is unorganised, much of that is in the form of emails, social media, surveys etc. Sorting through this manually would be rigorous, expensive and impossibly tedious. Because of this a sentiment analysis on these applications have many businesses incorporating it into their processes to have a competitive edge and to gain valuable insights into certain topics that are otherwise unattainable.
 
@@ -13,8 +12,7 @@ Our client Ghyston is a bespoke software development company based in Bristol th
 
 A solution to this problem would be a tool that looks for posts on social media about that particular piece of software and extracts a sentiment value from these. An aggregate sentiment of the posts would be extremely useful in social media monitoring as it allows us to gain a better synopsis of the wider public opinion behind certain topics in software and provide an open source project's real value in the eyes of the developer community and help our client in choosing which software to use in their projects.
 
-<a name="requirements" />
-# Requirements
+# Requirements <a name="requirements" />
 
 ## System Stakeholders
 
@@ -113,8 +111,7 @@ We have identified two sample use-case goals.
 ### Ethical
 * To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
 
-<a name="oodesign" />
-# OO Design & UML
+# OO Design & UML <a name="oodesign" />
 
 ## Architecture
 ![High-level architecture diagram](includes/high-level.png)
@@ -136,8 +133,7 @@ This is a sample of a class diagram for a class within our application. The Post
 
 This is a sample of a sequence diagram for the goal of getting the average sentiment for some query. This goal is the most important one in our application and the diagram visualises almost the entire working of the application. This diagram helped us to decide on the sequence and order of events that need to occur to accomplish the goal – getting a rating score for a given query.
 
-<a name="testing" />
-# Development Testing
+# Development Testing <a name="testing" />
 
 ## Back end
 
