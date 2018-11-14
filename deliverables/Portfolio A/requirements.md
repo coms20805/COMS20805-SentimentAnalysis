@@ -10,13 +10,13 @@
   * Tharidu Jayaratne
   * Martin Noruisis
 3. **Supporting Team**
-  * **Resource Managers** at the University of Bristol. They will be providing us with funding and resources if necessary
+  * **Resource Managers** at the University of Bristol. They will be providing us with funding and resources if necessary.
   * **Our Mentor** Nuha Tumia, a third-year student. She will be helping us with any technical difficulties, throughout the development stage.
   * **Development Managers** Dr Daniel Schien and Dr Simon Lock. They will be supervising and teaching us the fundamentals of software development throughout the stages of development and testing.
 
 ### External Stakeholders
-1. **Developers**: The developers of the open source software that we will be generating sentiment scores for
-1. **End users**: The people who will be using our software, once it has been fully developed
+1. **Developers**: The developers of the open source software that we will be generating sentiment scores for.
+1. **End users**: The people who will be using our software, once it has been fully developed.
   * **Consultants**: People who would use our software to provide expert advice professionally for advertising.
   * **Non-profit groups**: Organisations that could use our software to promote a particular social cause or promoting for a shared point of view, where no part of the organisation's income is distributed to its members, directors, or officers.
   * **The general public**: People who may be interested in finding the sentiment of a post.
@@ -24,6 +24,7 @@
 -------
 
 ## Use-case diagram
+![use-case](https://github.com/NavyaZaveri/COMS20805-SentimentAnalysis/blob/master/deliverables/Portfolio%20A/includes/use-case.png)
 
 ## Use-case goals
 We have identified two sample use-case goals.
@@ -64,9 +65,9 @@ We have identified two sample use-case goals.
 1 The algorithm will find correspondences between segments of a text and entries in our database of previous translations.
 1. Our REST API shall be *idempotent*.
   * Our algorithm can be applied multiple times without affecting the result beyond initial application.
-1. The database will be updated at least once a week.
-1. The development team will be responsible for maintaining and updating the system, with new posts.
-1. The application uses the Elastic search engine to retrieve the closest match to a given query.
+6. The database will be updated at least once a week.
+7. The development team will be responsible for maintaining and updating the system, with new posts.
+8. The application uses the Elastic search engine to retrieve the closest match to a given query.
 
 ## Non-functional Requirements
 ### Performance
@@ -82,7 +83,7 @@ We have identified two sample use-case goals.
 
 ### Usability
 * We will be aiming to make our software as usable as possible by testing on its:
-  * **Success rate**: The accuracy of the algorithm will be tested using our questionnaire
+  * **Success rate**: The accuracy of the algorithm will be tested using our questionnaire.
   * **Efficiency**: This will be tested through the unit and system integration tests, to ensure our product delivers the result as fast as possible.
   * **Memorability**: When a user returns to the application after a period of not using it, the user shall remember enough to use it effectively the next time.
   * **User Interface**
