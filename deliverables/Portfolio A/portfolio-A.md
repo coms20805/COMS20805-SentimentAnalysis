@@ -36,6 +36,7 @@ A solution to this problem would be a tool that looks for posts on social media 
   * **The general public**: People who may be interested in finding the sentiment of a post.
 
 ## Use-case diagram
+![Use-case diagram](includes/use-case.png)
 
 ## Use-case goals
 We have identified two sample use-case goals.
@@ -147,9 +148,6 @@ Given that Machine Learning is non-deterministic, we cannot write unit tests to 
 
 ## Front end
 We will also use unit tests to ensure our front-end React.js components behave as intended. For instance, checking that clicking the 'search' button sends a query or checking that the results of a query are shown to the user in the correct format.
-
-## Challenges
-One challenge we face is testing the machine learning part of our application. It will be difficult to test the accuracy of the sentiment scores given to posts, because the process is inherently non-deterministic, which means we cannot predict a specific score for a test post. In order to overcome this, we plan to use sanity checking. We will give our sentiment analyser a very positive and a very negative post and check that the sentiment scores are greater and less than 0.5 respectively. These tests can be put into unit tests, so when changes are made to the machine learning part of our application, we will at least be able to make sure it is sane.
 
 ## Testing frameworks
 The unit testing frameworks we will be using are *JUnit* for Java, *Mocha* for React.js and *unittest* for Python.
