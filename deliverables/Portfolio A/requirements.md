@@ -4,12 +4,12 @@
 
 ### Internal Stakeholders
 1.  **Client**: The software company Ghyston, represented by Mr Richard Meal.
-2. **Software Development Team**: The team will be managing, testing, updating and developing this Open source software for our client. Team members:
+1. **Software Development Team**: The team will be managing, testing, updating and developing this Open source software for our client. Team members:
   * Ben Price (Team Leader)
   * Navya Zaveri
   * Tharidu Jayaratne
   * Martin Noruisis
-3. **Supporting Team**
+1. **Supporting Team**
   * **Resource Managers** at the University of Bristol. They will be providing us with funding and resources if necessary.
   * **Our Mentor** Nuha Tumia, a third-year student. She will be helping us with any technical difficulties, throughout the development stage.
   * **Development Managers** Dr Daniel Schien and Dr Simon Lock. They will be supervising and teaching us the fundamentals of software development throughout the stages of development and testing.
@@ -23,11 +23,11 @@
 
 -------
 
-## Use-case diagram
-![use-case](https://github.com/NavyaZaveri/COMS20805-SentimentAnalysis/blob/master/deliverables/Portfolio%20A/includes/use-case.png)
+## Use case diagram
+![Use case diagram](includes/use-case.png)
 
-## Use-case goals
-We have identified two sample use-case goals.
+## Use case goals
+We have identified two examples of use case goals.
 
 ### "User – submit query and receive result" flow
 1. Submit query
@@ -61,13 +61,13 @@ We have identified two sample use-case goals.
 1. The software will be able to extract insights from social media posts related to technology.
 1. It must display an overall rating of a query given by the user.
 1. It must display a list of up to 10 related posts for every successful query. If there are fewer than 10 posts, the front end will display all posts related to its respected query.
-4. When a malformed query is provided *fuzzy matching* will take place.
- * The algorithm will find correspondences between segments of a text and entries in our database of previous translations.
-5. Our REST API shall be *idempotent*.
+1. When a malformed query is provided *fuzzy matching* will take place.
+  * The algorithm will find correspondences between segments of a text and entries in our database of previous translations.
+1. Our REST API shall be *idempotent*.
   * Our algorithm can be applied multiple times without affecting the result beyond initial application.
-6. The database will be updated at least once a week.
-7. The development team will be responsible for maintaining and updating the system, with new posts.
-8. The application uses the Elastic search engine to retrieve the closest match to a given query.
+1. The database will be updated at least once a week.
+1. The development team will be responsible for maintaining and updating the system, with new posts.
+1. The application uses the Elastic search engine to retrieve the closest match to a given query.
 
 ## Non-functional Requirements
 ### Performance
@@ -100,5 +100,3 @@ We have identified two sample use-case goals.
 
 ### Ethical
 * To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
-
-----

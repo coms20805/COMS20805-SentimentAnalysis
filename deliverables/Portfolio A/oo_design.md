@@ -2,8 +2,6 @@
 ## Architecture
 ![High-level architecture diagram](includes/high-level.png)
 
-Relevant external systems our application depends on?
-
 The overall structure of the application will be as follows:
 1. **Front end**: receives input from the user, communicates with server via a Rest API to receive a result and outputs the result to the user
 1. **Server**: stores a database of posts with pre-calculated sentiment values, handles requests from the front end, gets new posts from the ML module

@@ -11,7 +11,7 @@ We will use integration testing to verify that the components of our application
 Given that Machine Learning is non-deterministic, we cannot write unit tests to test our model. As such, we have decided *not* to build our own model but to use a popular out-of-the-box sentiment analysis library and manually test it on a collection of random posts representative of our task. If it performs well enough on such posts, we use it as is. If it does not meet our expectations, we will either look at different libraries or tweak the parameters of the API model and determine what option best suits our needs.
 
 ## Front end
-We will also use unit tests to ensure our front-end React.js components behave as intended. For instance, checking that clicking the 'search' button sends a query or checking that the results of a query are shown to the user in the correct format.
+We will also use unit tests to ensure our front end React.js components behave as intended. For instance, checking that clicking the 'search' button sends a query or checking that the results of a query are shown to the user in the correct format.
 
 ## Testing frameworks
 The unit testing frameworks we will be using are *JUnit* for Java, *Mocha* for React.js and *unittest* for Python.
