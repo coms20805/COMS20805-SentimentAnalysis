@@ -61,9 +61,9 @@ We have identified two sample use-case goals.
 1. The software will be able to extract insights from social media posts related to technology.
 1. It must display an overall rating of a query given by the user.
 1. It must display a list of up to 10 related posts for every successful query. If there are fewer than 10 posts, the front end will display all posts related to its respected query.
-1. When a malformed query is provided *fuzzy matching* will take place.
-1 The algorithm will find correspondences between segments of a text and entries in our database of previous translations.
-1. Our REST API shall be *idempotent*.
+4. When a malformed query is provided *fuzzy matching* will take place.
+ * The algorithm will find correspondences between segments of a text and entries in our database of previous translations.
+5. Our REST API shall be *idempotent*.
   * Our algorithm can be applied multiple times without affecting the result beyond initial application.
 6. The database will be updated at least once a week.
 7. The development team will be responsible for maintaining and updating the system, with new posts.
