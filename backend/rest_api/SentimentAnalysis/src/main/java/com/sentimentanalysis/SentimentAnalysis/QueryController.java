@@ -3,14 +3,16 @@ package com.sentimentanalysis.SentimentAnalysis;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 @RestController
-public class QueryController {
+public class QueryController  extends WebMvcConfigurerAdapter {
 
-    @GetMapping("/search")
+    @GetMapping("/api/search")
     public Result search(@RequestParam(value="query", defaultValue="") String query) {
         // Create dummy response
         Post post1 = new Post(0.0f, query + " is very bad", "/example/url/", new Date(999999999));
@@ -20,4 +22,10 @@ public class QueryController {
         posts.add(post2);
         return new Result(0.5f, posts);
     }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("index");
+    }
+
 }
