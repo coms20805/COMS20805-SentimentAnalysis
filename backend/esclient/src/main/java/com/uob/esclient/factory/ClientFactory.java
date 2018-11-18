@@ -1,5 +1,6 @@
 package com.uob.esclient.factory;
 
+import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
@@ -17,8 +18,8 @@ public class ClientFactory {
             return new PreBuiltTransportClient(Settings.EMPTY)
                     .addTransportAddress(new TransportAddress(InetAddress.getByName(DEFAULT_HOST), DEFAULT_PORT));
         } catch (UnknownHostException e) {
-            throw new RuntimeException("Please start up a local instance of the ES server." +
-                    "See https://www.elastic.co/downloads/elasticsearh", e);
+            throw new RuntimeException(" Check your local ES host/port. If you haven't downloaded the ES binaries, " +
+                    "please see https://www.elastic.co/downloads/elasticsearh", e);
         }
     }
 
@@ -27,9 +28,13 @@ public class ClientFactory {
             return new PreBuiltTransportClient(Settings.EMPTY)
                     .addTransportAddress(new TransportAddress(InetAddress.getByName(host), port));
         } catch (UnknownHostException e) {
-            throw new RuntimeException("Please start up a local instance of the ES server." +
-                    " See https://www.elastic.co/downloads/elasticsearh", e);
+            throw new RuntimeException(" Check your local ES host/port. If you haven't downloaded the ES binaries, " +
+                    "please see https://www.elastic.co/downloads/elasticsearh", e);
         }
+    }
+
+    public static void main(String[] args) {
+        TransportClient c = ClientFactory.createClient();
 
     }
 
