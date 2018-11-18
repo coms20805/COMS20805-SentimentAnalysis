@@ -3,7 +3,6 @@ package com.uob.esclient;
 import com.uob.esclient.factory.ClientFactory;
 import com.uob.esclient.post.Post;
 import com.uob.esclient.search.FuzzyMatcher;
-import com.uob.esclient.search.Matcher;
 import com.uob.esclient.search.Strategy;
 import com.uob.esclient.search.StringMatcher;
 
@@ -11,8 +10,6 @@ import org.elasticsearch.client.transport.TransportClient;
 
 import java.net.UnknownHostException;
 import java.util.List;
-
-import lombok.Cleanup;
 
 
 public final class ElasticClient {
