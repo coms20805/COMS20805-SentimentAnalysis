@@ -20,7 +20,7 @@ public class ClientFactory {
                     .addTransportAddress(new TransportAddress(InetAddress.getByName(DEFAULT_HOST), DEFAULT_PORT));
         } catch (UnknownHostException e) {
             throw new RuntimeException(" Check your local ES host/port. " +
-                    "The default host is localhost, port = 9300."
+                    "The default host is localhost, port = 9300.\n"
                     + " If this is different from your ES configs, pass the required post and host", e);
         }
     }

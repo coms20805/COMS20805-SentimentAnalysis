@@ -23,11 +23,11 @@ public final class ElasticClient {
         this.transportClient = ClientFactory.createClient(port, host);
     }
 
-    public List<Post> findPosts(String query, Strategy strategy, int limit) {
+    public List<Post> findPosts(String searchQuery, Strategy strategy, int limit) {
         if (strategy == Strategy.FUZZY) {
-            return new FuzzyMatcher(transportClient).findPosts(query, limit);
+            return new FuzzyMatcher(transportClient).findPosts(searchQuery, limit);
         } else if (strategy == Strategy.EXACT_MATCH) {
-            return new StringMatcher(transportClient).findPosts(query, limit);
+            return new StringMatcher(transportClient).findPosts(searchQuery, limit);
         }
         throw new RuntimeException("invalid strategy");
     }

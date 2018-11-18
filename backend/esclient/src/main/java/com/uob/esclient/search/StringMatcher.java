@@ -5,7 +5,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 
-public class StringMatcher extends Matcher {
+public final class StringMatcher extends Matcher {
 
 
     public StringMatcher(TransportClient client) {
@@ -13,7 +13,7 @@ public class StringMatcher extends Matcher {
     }
 
     @Override
-    SearchRequestBuilder queryBuilder(String query) {
+    SearchRequestBuilder getSearchRequestBuilder(String query) {
         MatchQueryBuilder content = QueryBuilders.matchQuery("content", query);
         return client.prepareSearch().setQuery(content);
     }

@@ -5,7 +5,6 @@ import com.uob.esclient.post.Post;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.search.SearchHit;
 
 import java.util.ArrayList;
@@ -13,29 +12,30 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Matcher {
+abstract class Matcher {
     final TransportClient client;
 
-    public Matcher(TransportClient client) {
+    Matcher(TransportClient client) {
         this.client = client;
     }
 
-    abstract SearchRequestBuilder queryBuilder(String query);
+    abstract SearchRequestBuilder getSearchRequestBuilder(String query);
 
     private SearchResponse getResponse(SearchRequestBuilder builder) {
         return builder.execute().actionGet();
     }
 
-    public List<Post> findPosts(String query, int limit) {
-        return Collections.unmodifiableList(findPosts(query).
+    public List<Post> findPosts(String searchQuery, int limit) {
+        return Collections.unmodifiableList(findPosts(searchQuery).
                 stream().
                 limit(limit).
                 collect(Collectors.toList()));
     }
 
-    public List<Post> findPosts(String query) {
+
+    public List<Post> findPosts(String searchQuery) {
         List<Post> posts = new ArrayList<>();
-        SearchRequestBuilder searchRequestBuilder = queryBuilder(query);
+        SearchRequestBuilder searchRequestBuilder = getSearchRequestBuilder(searchQuery);
         SearchResponse res = getResponse(searchRequestBuilder);
 
         for (SearchHit h : res.getHits()) {
