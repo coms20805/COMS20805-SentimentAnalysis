@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
@@ -27,6 +28,11 @@ public class FuzzyMatcher implements Matcher {
     public FuzzyMatcher(TransportClient client) {
         this.client = client;
     }
+
+    private SearchResponse getResponse(SearchRequestBuilder builder) {
+        return builder.execute().actionGet();
+    }
+
 
     private SearchRequestBuilder fuzzyQueryBuilder(String query) {
         MultiMatchQueryBuilder fuzzyMmQueryBuilder = multiMatchQuery(
@@ -41,7 +47,7 @@ public class FuzzyMatcher implements Matcher {
     public List<Post> findPosts(String query) {
         List<Post> posts = new ArrayList<>();
         SearchRequestBuilder searchRequestBuilder = fuzzyQueryBuilder(query);
-        SearchResponse res = searchRequestBuilder.execute().actionGet();
+        SearchResponse res = getResponse(searchRequestBuilder);
 
         for (SearchHit h : res.getHits()) {
             System.out.println(h.getSourceAsMap());
@@ -49,9 +55,13 @@ public class FuzzyMatcher implements Matcher {
         return Collections.unmodifiableList(posts);
     }
 
+
     @Override
     public List<Post> findPosts(String query, int limit) {
-        return null;
+        return findPosts(query).
+                stream().
+                limit(limit).
+                collect(Collectors.toList());
     }
 
     public static void main(String[] args) throws IOException {
@@ -61,12 +71,12 @@ public class FuzzyMatcher implements Matcher {
         IndexResponse response = client.prepareIndex("twitter", "_doc")
                 .setSource(jsonBuilder()
                         .startObject()
-                        .field("user", "kimothy")
+                        .field("user", "adude")
                         .field("c", new Date())
-                        .field("content", "this is very python cool stuff")
+                        .field("content", "this is not pythonic ")
                         .endObject()
                 ).get();
         Matcher s = new FuzzyMatcher(client);
-        s.findPosts("pytho");
+        s.findPosts("python");
     }
 }

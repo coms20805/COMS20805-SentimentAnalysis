@@ -2,9 +2,11 @@ package com.uob.esclient.search;
 
 import com.uob.esclient.post.Post;
 
+import org.elasticsearch.common.settings.Settings;
+
 import java.util.List;
 
-interface Matcher {
+public interface Matcher {
 
     List<Post> findPosts(String query);
 

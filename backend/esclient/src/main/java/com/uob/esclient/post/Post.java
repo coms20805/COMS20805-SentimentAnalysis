@@ -2,7 +2,6 @@ package com.uob.esclient.post;
 
 import java.util.Date;
 
-import lombok.Data;
 import lombok.Value;
 
 @Value public class Post {
