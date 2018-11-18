@@ -38,7 +38,7 @@ public class FuzzyMatcher implements Matcher {
     }
 
     @Override
-    public List<Post> findPostsClosestTo(String query) {
+    public List<Post> findPosts(String query) {
         List<Post> posts = new ArrayList<>();
         SearchRequestBuilder searchRequestBuilder = fuzzyQueryBuilder(query);
         SearchResponse res = searchRequestBuilder.execute().actionGet();
@@ -50,7 +50,7 @@ public class FuzzyMatcher implements Matcher {
     }
 
     @Override
-    public List<Post> findPostsClosestTo(String query, int limit) {
+    public List<Post> findPosts(String query, int limit) {
         return null;
     }
 
@@ -67,6 +67,6 @@ public class FuzzyMatcher implements Matcher {
                         .endObject()
                 ).get();
         Matcher s = new FuzzyMatcher(client);
-        s.findPostsClosestTo("pytho");
+        s.findPosts("pytho");
     }
 }

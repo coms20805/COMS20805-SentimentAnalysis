@@ -6,8 +6,8 @@ import java.util.List;
 
 interface Matcher {
 
-    List<Post> findPostsClosestTo(String query);
+    List<Post> findPosts(String query);
 
-    List<Post> findPostsClosestTo(String query, int limit);
+    List<Post> findPosts(String query, int limit);
 
 }

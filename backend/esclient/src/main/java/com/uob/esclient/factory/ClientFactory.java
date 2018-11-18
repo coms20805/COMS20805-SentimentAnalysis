@@ -19,10 +19,9 @@ public class ClientFactory {
             return new PreBuiltTransportClient(Settings.EMPTY)
                     .addTransportAddress(new TransportAddress(InetAddress.getByName(DEFAULT_HOST), DEFAULT_PORT));
         } catch (UnknownHostException e) {
-
             throw new RuntimeException(" Check your local ES host/port. " +
                     "The default host is localhost, port = 9300."
-                    + " If this is different from your ES logs, pass the required post and host", e);
+                    + " If this is different from your ES configs, pass the required post and host", e);
         }
     }
 
