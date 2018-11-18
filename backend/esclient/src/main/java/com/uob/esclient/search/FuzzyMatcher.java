@@ -58,9 +58,9 @@ public class FuzzyMatcher implements Matcher {
 
     @Override
     public List<Post> findPosts(String query, int limit) {
-        return findPosts(query).
+        return Collections.unmodifiableList(findPosts(query).
                 stream().
                 limit(limit).
-                collect(Collectors.toList());
+                collect(Collectors.toList()));
     }
 }
