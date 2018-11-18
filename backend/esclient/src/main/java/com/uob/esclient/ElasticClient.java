@@ -42,8 +42,5 @@ public final class ElasticClient {
     public void deleteIndex() {
     }
 
-    public static void main(String[] args) {
-        @Cleanup ElasticClient c = new ElasticClient();
-    }
 
 }

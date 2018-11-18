@@ -63,20 +63,4 @@ public class FuzzyMatcher implements Matcher {
                 limit(limit).
                 collect(Collectors.toList());
     }
-
-    public static void main(String[] args) throws IOException {
-        TransportClient client = ClientFactory.createClient();
-
-
-        IndexResponse response = client.prepareIndex("twitter", "_doc")
-                .setSource(jsonBuilder()
-                        .startObject()
-                        .field("user", "adude")
-                        .field("c", new Date())
-                        .field("content", "this is not pythonic ")
-                        .endObject()
-                ).get();
-        Matcher s = new FuzzyMatcher(client);
-        s.findPosts("python");
-    }
 }
