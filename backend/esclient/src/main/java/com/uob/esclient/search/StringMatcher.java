@@ -13,7 +13,7 @@ public final class StringMatcher extends Matcher {
     }
 
     @Override
-    SearchRequestBuilder getSearchRequestBuilder(String query) {
+    SearchRequestBuilder buildSearchRequest(String query) {
         MatchQueryBuilder content = QueryBuilders.matchQuery("content", query);
         return client.prepareSearch().setQuery(content);
     }

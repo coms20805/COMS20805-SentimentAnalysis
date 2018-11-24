@@ -24,18 +24,13 @@ public final class ElasticClient {
     }
 
 
-    //keeps as placeholder for now, will remove later and use the generified method below instead
-    public List<Post> findPosts(String searchQuery, Strategy strategy, int limit) {
+    public <P> List<P> findPosts(String searchQuery, Strategy strategy, int limit, Class<P> postClazz) {
         if (strategy == Strategy.FUZZY) {
-            return new FuzzyMatcher(transportClient).findPosts(searchQuery, limit);
+            return new FuzzyMatcher(transportClient).findPosts(searchQuery, limit, postClazz);
         } else if (strategy == Strategy.EXACT_MATCH) {
-            return new StringMatcher(transportClient).findPosts(searchQuery, limit);
+            return new StringMatcher(transportClient).findPosts(searchQuery, limit, postClazz);
         }
         throw new RuntimeException("invalid strategy");
-    }
-
-    public <P> List<P> findPosts(String searchQuery, Strategy strategy, int limit, Class<P> postClazz) {
-        return null;
     }
 
     public <P> List<P> findPosts(String searchQuery, Strategy strategy, Class<P> postClazz) {

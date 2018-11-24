@@ -19,23 +19,23 @@ abstract class Matcher {
         this.client = client;
     }
 
-    abstract SearchRequestBuilder getSearchRequestBuilder(String query);
+    abstract SearchRequestBuilder buildSearchRequest(String query);
 
     private SearchResponse getResponse(SearchRequestBuilder builder) {
         return builder.execute().actionGet();
     }
 
-    public List<Post> findPosts(String searchQuery, int limit) {
-        return Collections.unmodifiableList(findPosts(searchQuery).
+    public <P> List<P> findPosts(String searchQuery, int limit, Class<P> postClazz) {
+        return Collections.unmodifiableList(findPosts(searchQuery, postClazz).
                 stream().
                 limit(limit).
                 collect(Collectors.toList()));
     }
 
 
-    public List<Post> findPosts(String searchQuery) {
-        List<Post> posts = new ArrayList<>();
-        SearchRequestBuilder searchRequestBuilder = getSearchRequestBuilder(searchQuery);
+    public <P> List<P> findPosts(String searchQuery, Class<P> postClazz) {
+        List<P> posts = new ArrayList<>();
+        SearchRequestBuilder searchRequestBuilder = buildSearchRequest(searchQuery);
         SearchResponse res = getResponse(searchRequestBuilder);
 
         for (SearchHit h : res.getHits()) {
