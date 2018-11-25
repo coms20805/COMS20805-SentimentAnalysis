@@ -25,10 +25,11 @@ public final class ElasticClient {
 
 
     public <P> List<P> findPosts(String searchQuery, Strategy strategy, int limit, Class<P> postClazz) {
-        if (strategy == Strategy.FUZZY) {
-            return new FuzzyMatcher(transportClient).findPosts(searchQuery, limit, postClazz);
-        } else if (strategy == Strategy.EXACT_MATCH) {
-            return new StringMatcher(transportClient).findPosts(searchQuery, limit, postClazz);
+        switch (strategy) {
+            case FUZZY:
+                return new FuzzyMatcher(transportClient).findPosts(searchQuery, limit, postClazz);
+            case EXACT_MATCH:
+                return new StringMatcher(transportClient).findPosts(searchQuery, limit, postClazz);
         }
         throw new RuntimeException("invalid strategy");
     }
@@ -36,7 +37,6 @@ public final class ElasticClient {
     public <P> List<P> findPosts(String searchQuery, Strategy strategy, Class<P> postClazz) {
         return null;
     }
-
 
     public void close() {
         transportClient.close();
