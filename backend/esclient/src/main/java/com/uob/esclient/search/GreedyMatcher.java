@@ -6,6 +6,8 @@ import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 
+
+//matches against ALL posts
 public class GreedyMatcher extends Matcher {
     public GreedyMatcher(TransportClient client) {
         super(client);
