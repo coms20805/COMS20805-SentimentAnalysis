@@ -1,4 +1,4 @@
-package com.uob.esclient.esqample;
+package com.uob.esclient.example;
 
 import com.uob.esclient.client.ElasticClient;
 import com.uob.esclient.post.Post;
@@ -10,7 +10,7 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) {
-        ElasticClient cl = new ElasticClient();
+        ElasticClient client = new ElasticClient();
         SearchQuery searchQuery = SearchQuery.builder().with((sq) -> {
             sq.limit = 100;
             sq.fieldToCompareAgainst = "content";
@@ -18,7 +18,7 @@ public class App {
             sq.literalQuery = "scala";
         }).build();
 
-        List<Post> posts = cl.findPosts(searchQuery, Post.class);
+        List<Post> posts = client.findPosts(searchQuery, Post.class);
         posts.forEach(System.out::println);
     }
 }
