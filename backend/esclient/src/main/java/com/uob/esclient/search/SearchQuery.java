@@ -3,8 +3,6 @@ package com.uob.esclient.search;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import lombok.NonNull;
-
 
 public class SearchQuery {
     public final String query;
