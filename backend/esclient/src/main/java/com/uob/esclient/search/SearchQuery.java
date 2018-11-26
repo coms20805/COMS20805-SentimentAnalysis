@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 
 public class SearchQuery {
     public final String query;
-    public final Class<?> postClazz;
     public final int limit;
     public final String fieldToCompareAgainst;
     public final Strategy strategy;
@@ -14,9 +13,6 @@ public class SearchQuery {
     private SearchQuery(Builder builder) {
         this.query = Objects.requireNonNull(builder.query,
                 NonNullErrorTemplate("query"));
-
-        this.postClazz = Objects.requireNonNull(builder.postClazz,
-                NonNullErrorTemplate("post class"));
 
         this.limit = builder.limit;
 
@@ -38,7 +34,6 @@ public class SearchQuery {
 
     public static class Builder {
         public String query;
-        public Class<?> postClazz;
         public int limit;
         public String fieldToCompareAgainst;
         public Strategy strategy;
