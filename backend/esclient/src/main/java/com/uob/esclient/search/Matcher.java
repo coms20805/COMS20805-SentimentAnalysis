@@ -25,7 +25,7 @@ abstract class Matcher {
     }
 
     public <P> List<P> findPosts(SearchQuery sq, Class<P> postClazz) {
-        SearchRequestBuilder searchRequestBuilder = buildSearchRequest(sq.query, sq.fieldToCompareAgainst);
+        SearchRequestBuilder searchRequestBuilder = buildSearchRequest(sq.literalQuery, sq.fieldToCompareAgainst);
         SearchResponse res = getResponse(searchRequestBuilder);
 
         return Arrays.stream(res.getHits().getHits())

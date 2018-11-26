@@ -14,7 +14,7 @@ public final class GreedyMatcher extends Matcher {
     }
 
     @Override
-    SearchRequestBuilder buildSearchRequest(String query, String fieldToCmpAgainst) {
+    SearchRequestBuilder buildSearchRequest(String literalQuery, String fieldToCmpAgainst) {
         MatchAllQueryBuilder srb = QueryBuilders.matchAllQuery();
         return client.prepareSearch().setQuery(srb);
 

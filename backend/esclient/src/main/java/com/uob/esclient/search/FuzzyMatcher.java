@@ -15,9 +15,9 @@ public final class FuzzyMatcher extends Matcher {
     }
 
     @Override
-    SearchRequestBuilder buildSearchRequest(String query, String fieldToCmpAgainst) {
+    SearchRequestBuilder buildSearchRequest(String literalQuery, String fieldToCmpAgainst) {
         MultiMatchQueryBuilder fuzzyMmQueryBuilder = multiMatchQuery(
-                query, fieldToCmpAgainst).fuzziness("AUTO");
+                literalQuery, fieldToCmpAgainst).fuzziness("AUTO");
 
         BoolQueryBuilder b = boolQuery().should(fuzzyMmQueryBuilder);
         return client.prepareSearch().setQuery(b);

@@ -5,13 +5,13 @@ import java.util.function.Consumer;
 
 
 public class SearchQuery {
-    public final String query;
+    public final String literalQuery;
     public final int limit;
     public final String fieldToCompareAgainst;
     public final Strategy strategy;
 
     private SearchQuery(Builder builder) {
-        this.query = Objects.requireNonNull(builder.query,
+        this.literalQuery = Objects.requireNonNull(builder.literalQuery,
                 NonNullErrorTemplate("query"));
 
         this.limit = builder.limit;
@@ -33,7 +33,7 @@ public class SearchQuery {
 
 
     public static class Builder {
-        public String query;
+        public String literalQuery;
         public int limit;
         public String fieldToCompareAgainst;
         public Strategy strategy;
