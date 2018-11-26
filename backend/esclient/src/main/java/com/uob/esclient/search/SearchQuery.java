@@ -3,7 +3,6 @@ package com.uob.esclient.search;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import lombok.NonNull;
 
 public class SearchQuery {
     public final String query;
@@ -41,16 +40,5 @@ public class SearchQuery {
         public SearchQuery build() {
             return new SearchQuery(this);
         }
-    }
-
-    public static void main(String[] args) {
-        SearchQuery sq = SearchQuery.builder().with((x) -> {
-            x.fieldToCompareAgainst = "";
-            x.limit = 10;
-            x.query = "helooo";
-            x.postClazz = Integer.class;
-            x.strategy = Strategy.GREEDY_MATCH;
-        }).build();
-        System.out.println(sq.query);
     }
 }

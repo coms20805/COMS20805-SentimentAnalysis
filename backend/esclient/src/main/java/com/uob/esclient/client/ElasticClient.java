@@ -27,7 +27,7 @@ public final class ElasticClient {
         this.transportClient = ClientFactory.createClient(port, host);
     }
 
-    private List<?> findPosts(SearchQuery sq) {
+    public List<?> findPosts(SearchQuery sq) {
         switch (sq.strategy) {
             case FUZZY_MATCH:
                 return new FuzzyMatcher(transportClient).findPosts(sq.query, sq.limit, sq.postClazz);
@@ -39,11 +39,6 @@ public final class ElasticClient {
         throw new RuntimeException("strategy not found", null);
     }
 
-
-    public <P> List<P> findPosts(String searchQuery, Strategy strategy, Class<P> postClazz) {
-        return null;
-    }
-
     public void close() {
         transportClient.close();
     }
@@ -51,8 +46,8 @@ public final class ElasticClient {
     private void deleteAllDocsIn(String index) {
         transportClient.admin().
                 indices().
-                delete(new DeleteIndexRequest(index))
-                .actionGet();
+                delete(new DeleteIndexRequest(index)).
+                actionGet();
     }
 
     //TODO
