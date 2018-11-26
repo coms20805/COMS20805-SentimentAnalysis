@@ -40,7 +40,7 @@ public final class ElasticClient {
         transportClient.close();
     }
 
-    private void deleteAllDocsIn(String index) {
+    public void deleteAllDocsIn(String index) {
         transportClient.admin().
                 indices().
                 delete(new DeleteIndexRequest(index)).
@@ -48,7 +48,7 @@ public final class ElasticClient {
     }
 
     //TODO
-    private void deleteDoc(String index, int id) {
+    public void deleteDoc(String index, int id) {
 
     }
 }

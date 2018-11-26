@@ -5,6 +5,7 @@ import com.uob.esclient.utils.PostUtils;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.search.SearchHit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +28,7 @@ abstract class Matcher {
     public <P> List<P> findPosts(SearchQuery sq, Class<P> postClazz) {
         SearchRequestBuilder searchRequestBuilder = buildSearchRequest(sq.literalQuery, sq.fieldToCompareAgainst);
         SearchResponse res = getResponse(searchRequestBuilder);
+
 
         return Arrays.stream(res.getHits().getHits())
                 .map((x) -> PostUtils.toPost(x.getSourceAsMap(), postClazz))
