@@ -30,11 +30,11 @@ public final class ElasticClient {
     public List<?> findPosts(SearchQuery sq) {
         switch (sq.strategy) {
             case FUZZY_MATCH:
-                return new FuzzyMatcher(transportClient).findPosts(sq.query, sq.limit, sq.postClazz);
+                return new FuzzyMatcher(transportClient).findPosts(sq);
             case EXACT_MATCH:
-                return new StringMatcher(transportClient).findPosts(sq.query, sq.limit, sq.postClazz);
+                return new StringMatcher(transportClient).findPosts(sq);
             case GREEDY_MATCH:
-                return new GreedyMatcher(transportClient).findPosts(sq.query, sq.limit, sq.postClazz);
+                return new GreedyMatcher(transportClient).findPosts(sq);
         }
         throw new RuntimeException("strategy not found", null);
     }

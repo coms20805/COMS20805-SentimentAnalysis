@@ -1,7 +1,5 @@
 package com.uob.esclient.search;
 
-import com.uob.esclient.post.Post;
-
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -19,23 +17,23 @@ abstract class Matcher {
         this.client = client;
     }
 
-    abstract SearchRequestBuilder buildSearchRequest(String query);
+    abstract SearchRequestBuilder buildSearchRequest(String query, String fieldToCompareAgainst);
 
     private SearchResponse getResponse(SearchRequestBuilder builder) {
         return builder.execute().actionGet();
     }
 
-    public <P> List<P> findPosts(String searchQuery, int limit, Class<P> postClazz) {
-        return Collections.unmodifiableList(findPosts(searchQuery, postClazz).
+    public List<?> findPosts(SearchQuery sq) {
+        return Collections.unmodifiableList(findPosts(sq.query, sq.postClazz, sq.fieldToCompareAgainst).
                 stream().
-                limit(limit).
+                limit(sq.limit).
                 collect(Collectors.toList()));
     }
 
 
-    public <P> List<P> findPosts(String searchQuery, Class<P> postClazz) {
+    public <P> List<P> findPosts(String literalQuery, Class<P> postClazz, String fieldToCompareAgainst) {
         List<P> posts = new ArrayList<>();
-        SearchRequestBuilder searchRequestBuilder = buildSearchRequest(searchQuery);
+        SearchRequestBuilder searchRequestBuilder = buildSearchRequest(literalQuery, fieldToCompareAgainst);
         SearchResponse res = getResponse(searchRequestBuilder);
 
         for (SearchHit h : res.getHits()) {

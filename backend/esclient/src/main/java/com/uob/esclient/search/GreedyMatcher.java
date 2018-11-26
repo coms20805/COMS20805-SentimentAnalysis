@@ -8,13 +8,13 @@ import org.elasticsearch.index.query.QueryBuilders;
 
 
 //matches against ALL posts
-public class GreedyMatcher extends Matcher {
+public final class GreedyMatcher extends Matcher {
     public GreedyMatcher(TransportClient client) {
         super(client);
     }
 
     @Override
-    SearchRequestBuilder buildSearchRequest(String query) {
+    SearchRequestBuilder buildSearchRequest(String query, String fieldToCmpAgainst) {
         MatchAllQueryBuilder srb = QueryBuilders.matchAllQuery();
         return client.prepareSearch().setQuery(srb);
 
