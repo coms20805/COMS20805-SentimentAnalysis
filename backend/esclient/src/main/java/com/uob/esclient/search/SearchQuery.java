@@ -39,11 +39,11 @@ public class SearchQuery {
 
 
     public static class Builder {
-        public @NonNull String query;
-        public @NonNull Class<?> postClazz;
+        public String query;
+        public Class<?> postClazz;
         public int limit;
-        public @NonNull String fieldToCompareAgainst;
-        public @NonNull Strategy strategy;
+        public String fieldToCompareAgainst;
+        public Strategy strategy;
 
         public Builder with(Consumer<Builder> func) {
             func.accept(this);
