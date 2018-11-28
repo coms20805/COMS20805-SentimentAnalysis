@@ -1,25 +1,38 @@
 package com.sentimentanalysis.SentimentAnalysis;
 
+import com.uob.esclient.client.ElasticClient;
+import com.uob.esclient.search.SearchQuery;
+import com.uob.esclient.search.Strategy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class QueryController  extends WebMvcConfigurerAdapter {
 
     @GetMapping("/api/search")
     public Result search(@RequestParam(value="query", defaultValue="") String query) {
-        // Create dummy response
-        Post post1 = new Post(0.0f, query + " is very bad", "/example/url/", new Date(999999999));
-        Post post2 = new Post(1.0f, query + " is very good", "/example/url/", new Date(999999999));
-        ArrayList<Post> posts = new ArrayList<Post>();
-        posts.add(post1);
-        posts.add(post2);
+        // This is temporary
+        // TODO: modularise and refactor
+
+        ElasticClient elasticClient = new ElasticClient();
+
+        SearchQuery searchQuery = SearchQuery.builder().with((sq) -> {
+            sq.limit = 100;
+            sq.fieldToCompareAgainst = "content";
+            sq.strategy = Strategy.FUZZY_MATCH;
+            sq.literalQuery = query;
+        }).build();
+
+        List<Post> posts = elasticClient.findPosts(searchQuery, Post.class);
+
         return new Result(0.5f, posts);
     }
 

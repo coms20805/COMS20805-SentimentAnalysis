@@ -16,7 +16,11 @@ public class ClientFactory {
 
     public static TransportClient createClient() {
         try {
-            return new PreBuiltTransportClient(Settings.EMPTY)
+            Settings settings = Settings.builder().put("cluster.name", "docker-cluster")
+                                                  .put("client.transport.ignore_cluster_name", true)
+                                                  .build();
+
+            return new PreBuiltTransportClient(settings)
                     .addTransportAddress(new TransportAddress(InetAddress.getByName(DEFAULT_HOST), DEFAULT_PORT));
         } catch (UnknownHostException e) {
             throw new RuntimeException(" Check your local ES host/port. " +
