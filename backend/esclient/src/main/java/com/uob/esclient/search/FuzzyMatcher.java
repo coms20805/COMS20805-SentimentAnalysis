@@ -16,7 +16,9 @@ Eg: literal query ->  "python"
 document_1 -> {"pythn is ...".}
 
 A fuzzy matcher will match this document
-against the literal query.
+against the literal query, despite the typo in the document.
+
+See more here: https://en.wikipedia.org/wiki/Approximate_string_matching
  */
 public final class FuzzyMatcher extends Matcher {
 
