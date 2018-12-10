@@ -75,6 +75,5 @@ public class App {
         Gson gson = new Gson();
         Post _posts[] = gson.fromJson(stringifiedJsonList, Post[].class);
         Arrays.stream(_posts).forEach(System.out::println);
-
     }
 }
