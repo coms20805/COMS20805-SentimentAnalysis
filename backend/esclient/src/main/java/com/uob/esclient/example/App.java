@@ -11,17 +11,6 @@ import java.util.Arrays;
 
 import lombok.Value;
 
-/*
-A simple demo app illustrating how to use ElasticClient.
-
-NOte: To run this app, you need to download the elasticsearch
-binaries from https://www.elastic.co/downloads/elasticsearch.
-
- After downloading, execute the binaries: `bin/elasticsearch`
- This starts up the low-level elastic search client needed
- for our ElasticClient to work.
- */
-
 public class App {
 
 
