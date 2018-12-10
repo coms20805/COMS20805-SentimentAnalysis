@@ -1,5 +1,10 @@
 package com.uob.esclient.example;
 
+import com.google.gson.Gson;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import com.uob.esclient.client.ElasticClient;
 import com.uob.esclient.search.SearchQuery;
 import com.uob.esclient.search.Strategy;
@@ -12,6 +17,7 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -35,15 +41,18 @@ public class App {
     stored in the elasticsearch database
     */
     @Value
-    private static class MyPost {
+    private static class Post {
         private final String content;
-        private final Date timestamp;
+        private final int timestamp;
         private final String url;
         private final double score;
 
     }
 
-    public static void main(String[] args) throws UnknownHostException {
+    public static void main(String[] args) throws UnknownHostException, UnirestException {
+
+        /*
+        ---  Depreceated ----
 
         ElasticClient client = new ElasticClient();
         SearchQuery searchQuery = SearchQuery.builder().with((sq) -> {
@@ -53,30 +62,19 @@ public class App {
             sq.literalQuery = "pythn";
         }).build();
 
-        List<MyPost> posts = client.findPosts(searchQuery, MyPost.class);
+        List<Post> posts = client.findPosts(searchQuery, Post.class);
         posts.forEach(System.out::println);
 
-        /*
-        String clusterId = "e3b8bb93971646e2a03bd86952f68ad0"; // Your cluster ID here
-        Settings settings = Settings.builder()
-                .put("transport.ping_schedule", "5s")
-                //.put("transport.sniff", false) // Disabled by default and *must* be disabled.
-                .put("cluster.name", clusterId)
-                .put("request.headers.X-Found-Cluster", clusterId)
-                .build();
+        */
 
-        TransportClient client = new PreBuiltTransportClient(settings).
-                addTransportAddress(
-                        new TransportAddress(InetAddress.getByName("e3b8bb93971646e2a03bd86952f68ad0.us-central1.gcp.cloud.es.io")
-                                , 9343));
-        ElasticClient ec = new ElasticClient(client);
-        SearchQuery searchQuery = SearchQuery.builder().with((sq) -> {
-            sq.limit = 100;
-            sq.fieldToCompareAgainst = "content";
-            sq.strategy = Strategy.FUZZY_MATCH;
-            sq.literalQuery = "pythn";
-        }).build();
+        HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.get("https://es-app.herokuapp.com/query").
+                queryString("literal_query", "scala").
+                asJson();
 
-        ec.findPosts(searchQuery, MyPost.class); */
+        String stringifiedJsonList = jsonNodeHttpResponse.getBody().getObject().get("result").toString();
+        Gson gson = new Gson();
+        Post _posts[] = gson.fromJson(stringifiedJsonList, Post[].class);
+        Arrays.stream(_posts).forEach(System.out::println);
+
     }
 }
