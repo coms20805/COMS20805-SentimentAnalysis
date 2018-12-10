@@ -1,18 +1,12 @@
 package com.sentimentanalysis.SentimentAnalysis;
 
-import com.uob.esclient.client.ElasticClient;
-import com.uob.esclient.search.SearchQuery;
-import com.uob.esclient.search.Strategy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class QueryController  extends WebMvcConfigurerAdapter {
@@ -22,16 +16,13 @@ public class QueryController  extends WebMvcConfigurerAdapter {
         // This is temporary
         // TODO: modularise and refactor
 
-        ElasticClient elasticClient = new ElasticClient();
-
-        SearchQuery searchQuery = SearchQuery.builder().with((sq) -> {
-            sq.limit = 100;
-            sq.fieldToCompareAgainst = "content";
-            sq.strategy = Strategy.FUZZY_MATCH;
-            sq.literalQuery = query;
-        }).build();
-
-        List<Post> posts = elasticClient.findPosts(searchQuery, Post.class);
+        List<Post> posts;
+        try {
+            posts = ESQueryController.esQuery(query);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         return new Result(0.5f, posts);
     }
