@@ -56,7 +56,7 @@ public class App {
         */
 
         HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.get("https://es-app.herokuapp.com/query").
-                queryString("literal_query", "scala"). //can alternatively pass a map
+                queryString("literal_query", "python"). //can alternatively pass a map
                 asJson();
 
         String stringifiedJsonList = jsonNodeHttpResponse.getBody().getObject().get("result").toString();
