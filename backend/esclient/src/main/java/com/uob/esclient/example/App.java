@@ -40,7 +40,7 @@ public class App {
     public static void main(String[] args) throws UnknownHostException, UnirestException {
 
         /*
-        ---  Depreceated ----
+        ---  Deprecated ----
 
         ElasticClient client = new ElasticClient();
         SearchQuery searchQuery = SearchQuery.builder().with((sq) -> {
