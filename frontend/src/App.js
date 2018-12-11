@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Main from "./components/Main";
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import ResultsLayout from "./components/ResultsLayout";
 
 class App extends Component {
@@ -10,8 +9,8 @@ class App extends Component {
         <div>
             <Router>
                 <Switch>
-                    <Route name="results" exact path="/results" component={ResultsLayout}/>
-                    <Route name="index" exact path="/" component={Main}/>
+                    <Route exact path="/" render={() => (<Redirect to="/search" />)} />
+                    <Route name="search" exact path="/search" component={ResultsLayout}/>
                 </Switch>
             </Router>
         </div>

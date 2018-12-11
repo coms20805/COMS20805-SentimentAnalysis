@@ -4,7 +4,7 @@ const buildUrl = (path) => API_URL + path;
 
 export class SearchService {
 
-    async getResults(query) {
+    static async getResults(query) {
         return fetch(buildUrl("/search?query=" + query))
             .then(function (response) {
                 return response.json();

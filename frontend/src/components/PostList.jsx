@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { Table } from "react-bootstrap";
 import PostBox from "./PostBox";
 
 class PostList extends Component {
     render() {
         return(
             <div id="post-list">
-                <table>
+                <Table>
                     <thead>
                         <tr>
                             <th>Score</th>
@@ -16,7 +17,7 @@ class PostList extends Component {
                     <tbody>
                         {this.props.posts.map((post, i) => <PostBox post={post} key={i} />)}
                     </tbody>
-                </table>
+                </Table>
             </div>
         );
     }

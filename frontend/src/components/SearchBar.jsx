@@ -1,24 +1,12 @@
 import React, { Component } from "react";
 import "../styles/searchBar.css";
 import {Button, FormControl, FormGroup, Glyphicon, InputGroup} from "react-bootstrap";
-import {Redirect} from "react-router-dom";
 
 class SearchBar extends Component {
-
-    state = {
-        redirect: false,
-        query: null
-    };
-
-    handleSubmit(e) {
-        e.preventDefault();
-        this.setState({redirect: true, query: e.target.query.value});
-    }
-
-    render() {
+        render() {
         return (
             <div id="search-bar">
-                <form onSubmit={this.handleSubmit.bind(this)}>
+                <form onSubmit={this.props.handleSubmit}>
                     <FormGroup>
                         <InputGroup>
                             <FormControl
@@ -35,9 +23,6 @@ class SearchBar extends Component {
                         </InputGroup>
                     </FormGroup>
                 </form>
-                {this.state.redirect && (
-                    <Redirect to={"/results?query=" + this.state.query}/>
-                )}
             </div>
         );
     }

@@ -5,6 +5,7 @@ import {SearchService} from "../api/SearchService";
 import * as qs from "query-string";
 import RatingBox from "./RatingBox";
 import PostList from "./PostList";
+import {withRouter} from "react-router-dom";
 
 
 class ResultsLayout extends Component {
@@ -14,15 +15,24 @@ class ResultsLayout extends Component {
         query: undefined,
         rating: undefined,
         posts: undefined
-    }
-
-    searchService = new SearchService();
+    };
 
     async componentDidMount() {
         const parsedQuery = qs.parse(this.props.location.search).query;
-        const data = await this.searchService.getResults(parsedQuery);
-        // await new Promise(resolve => setTimeout(resolve, 1000));
-        this.setState({isLoading: false, query: parsedQuery, rating: data.rating, posts: data.posts});
+        if (parsedQuery) {
+            this.loadResults(parsedQuery);
+        }
+    }
+
+    async loadResults(query) {
+        const data = await SearchService.getResults(query);
+        this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts});
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.history.push("/search?query=" + e.target.query.value);
+        this.loadResults(e.target.query.value);
     }
 
     render() {
@@ -31,7 +41,7 @@ class ResultsLayout extends Component {
                 <Grid>
                     <Row className="show-grid" xs={8} xsOffset={4}>
                         <Col xs={8} xsOffset={2}>
-                            <SearchBar default={this.state.query}/>
+                            <SearchBar handleSubmit={this.handleSubmit.bind(this)} default={this.state.query}/>
                             { this.state.isLoading ?
                                 ""
                                 :
@@ -48,4 +58,4 @@ class ResultsLayout extends Component {
         );
     }
 }
-export default ResultsLayout;
+export default withRouter(ResultsLayout);
