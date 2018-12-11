@@ -3,15 +3,15 @@ package com.sentimentanalysis.SentimentAnalysis;
 import java.util.List;
 
 public class Result {
-    private float rating;
+    private double rating;
     private List<Post> posts;
 
-    public Result(float rating, List<Post> posts) {
+    Result(double rating, List<Post> posts) {
         this.rating = rating;
         this.posts = posts;
     }
 
-    public float getRating() {
+    public double getRating() {
         return rating;
     }
 
