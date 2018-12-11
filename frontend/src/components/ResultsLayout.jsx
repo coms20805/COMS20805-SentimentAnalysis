@@ -14,7 +14,7 @@ class ResultsLayout extends Component {
         isLoading: true,
         query: undefined,
         rating: undefined,
-        posts: undefined
+        posts: []
     };
 
     async componentDidMount() {
@@ -45,11 +45,17 @@ class ResultsLayout extends Component {
                             { this.state.isLoading ?
                                 ""
                                 :
-                                <div>
-                                    <p>There are results!</p>
-                                    <RatingBox rating={this.state.rating}/>
-                                    <PostList posts={this.state.posts}/>
-                                </div>
+                                    [ this.state.posts && this.state.posts.length === 0 ?
+                                        <div>
+                                            <p>No results</p>
+                                        </div>
+                                        :
+                                        <div>
+                                            <p>There are results!</p>
+                                            <RatingBox rating={this.state.rating}/>
+                                            <PostList posts={this.state.posts}/>
+                                        </div>
+                                    ]
                             }
                         </Col>
                     </Row>
