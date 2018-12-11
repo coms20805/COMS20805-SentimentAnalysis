@@ -12,15 +12,18 @@ class ResultsLayout extends Component {
 
     state = {
         isLoading: true,
-        query: undefined,
+        query: "",
         rating: undefined,
         posts: []
     };
 
     async componentDidMount() {
         const parsedQuery = qs.parse(this.props.location.search).query;
-        if (parsedQuery) {
+        if (parsedQuery && parsedQuery.length > 0) {
             this.loadResults(parsedQuery);
+        }
+        else {
+            this.props.history.push("/search");
         }
     }
 
@@ -31,8 +34,10 @@ class ResultsLayout extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.history.push("/search?query=" + e.target.query.value);
-        this.loadResults(e.target.query.value);
+        if (e.target.query.value.length > 0) {
+            this.props.history.push("/search?query=" + e.target.query.value);
+            this.loadResults(e.target.query.value);
+        }
     }
 
     render() {
@@ -41,16 +46,17 @@ class ResultsLayout extends Component {
                 <Grid>
                     <Row className="show-grid" xs={8} xsOffset={4}>
                         <Col xs={8} xsOffset={2}>
-                            <SearchBar handleSubmit={this.handleSubmit.bind(this)} default={this.state.query}/>
                             { this.state.isLoading ?
-                                ""
+                                <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query}/>
                                 :
                                     [ this.state.posts && this.state.posts.length === 0 ?
                                         <div>
+                                            <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query}/>
                                             <p>No results</p>
                                         </div>
                                         :
                                         <div>
+                                            <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query}/>
                                             <p>There are results!</p>
                                             <RatingBox rating={this.state.rating}/>
                                             <PostList posts={this.state.posts}/>
