@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api";
+const API_URL = "http://132.145.54.186:8080/api";
 
 const buildUrl = (path) => API_URL + path;
 
