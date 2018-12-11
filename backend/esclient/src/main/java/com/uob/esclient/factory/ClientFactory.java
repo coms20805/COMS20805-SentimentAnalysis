@@ -16,7 +16,7 @@ public class ClientFactory {
 
     public static TransportClient createClient() {
         try {
-            Settings settings = Settings.builder().put("cluster.name", "docker-cluster")
+            Settings settings = Settings.builder().put("cluster.name", "elasticsearch")
                                                   .put("client.transport.ignore_cluster_name", true)
                                                   .build();
 

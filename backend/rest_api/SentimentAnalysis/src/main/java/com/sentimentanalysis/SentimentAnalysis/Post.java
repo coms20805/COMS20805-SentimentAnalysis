@@ -15,19 +15,19 @@ class Post {
         this.score = score;
     }
 
-    String getContent() {
+    public String getContent() {
         return content;
     }
 
-    int getTimestamp() {
+    public int getTimestamp() {
         return timestamp;
     }
 
-    String getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    double getScore() {
+    public double getScore() {
         return score;
     }
 }
