@@ -4,7 +4,7 @@ class RatingBox extends Component {
     render() {
         return(
             <div id="rating-box">
-                <p>Rating: {this.props.rating}</p>
+                <p>Rating: {parseFloat(Math.round(this.props.rating * 100) / 100).toFixed(2)}</p>
             </div>
         );
     }
