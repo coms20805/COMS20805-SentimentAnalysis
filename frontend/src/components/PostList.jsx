@@ -11,7 +11,6 @@ class PostList extends Component {
                             <th>Score</th>
                             <th>Content</th>
                             <th>URL</th>
-                            <th>Timestamp</th>
                         </tr>
                     </thead>
                     <tbody>
