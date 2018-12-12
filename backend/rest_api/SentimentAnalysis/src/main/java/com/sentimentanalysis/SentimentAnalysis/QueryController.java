@@ -1,31 +1,31 @@
 package com.sentimentanalysis.SentimentAnalysis;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 @RestController
-public class QueryController  extends WebMvcConfigurerAdapter {
+public class QueryController {
 
+    @CrossOrigin(origins="*")
     @GetMapping("/api/search")
     public Result search(@RequestParam(value="query", defaultValue="") String query) {
-        // Create dummy response
-        Post post1 = new Post(0.0f, query + " is very bad", "/example/url/", new Date(999999999));
-        Post post2 = new Post(1.0f, query + " is very good", "/example/url/", new Date(999999999));
-        ArrayList<Post> posts = new ArrayList<Post>();
-        posts.add(post1);
-        posts.add(post2);
-        return new Result(0.5f, posts);
-    }
+        // This is temporary
+        // TODO: modularise and refactor
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-    }
+        List<Post> posts;
+        try {
+            posts = ESQueryController.esQuery(query);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
+        double averageScore = posts.stream().mapToDouble(Post::getScore).sum() / posts.size();
+
+        return new Result(averageScore, posts);
+    }
 }

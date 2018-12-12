@@ -1,21 +1,21 @@
 package com.sentimentanalysis.SentimentAnalysis;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Result {
-    private float rating;
-    private ArrayList<Post> posts;
+    private double rating;
+    private List<Post> posts;
 
-    public Result(float rating, ArrayList<Post> posts) {
+    Result(double rating, List<Post> posts) {
         this.rating = rating;
         this.posts = posts;
     }
 
-    public float getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public ArrayList<Post> getPosts() {
+    public List<Post> getPosts() {
         return posts;
     }
 }

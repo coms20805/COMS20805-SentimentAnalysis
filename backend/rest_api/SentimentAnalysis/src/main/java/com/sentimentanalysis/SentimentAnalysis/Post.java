@@ -2,32 +2,32 @@ package com.sentimentanalysis.SentimentAnalysis;
 
 import java.util.Date;
 
-public class Post {
-    private float score;
+class Post {
     private String content;
+    private int timestamp;
     private String url;
-    private Date timestamp;
+    private double score;
 
-    public Post(float score, String content, String url, Date timestamp) {
-        this.score = score;
+    Post(String content, int timestamp, String url, double score) {
         this.content = content;
-        this.url = url;
         this.timestamp = timestamp;
-    }
-
-    public float getScore() {
-        return score;
+        this.url = url;
+        this.score = score;
     }
 
     public String getContent() {
         return content;
     }
 
+    public int getTimestamp() {
+        return timestamp;
+    }
+
     public String getUrl() {
         return url;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public double getScore() {
+        return score;
     }
 }
