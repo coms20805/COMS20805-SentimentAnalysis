@@ -24,6 +24,10 @@ public final class ElasticClient {
         this.transportClient = ClientFactory.createClient(port, host);
     }
 
+    public ElasticClient(TransportClient client) {
+        this.transportClient = client;
+    }
+
     public <P> List<P> findPosts(SearchQuery sq, Class<P> postClazz) {
         switch (sq.strategy) {
             case FUZZY_MATCH:

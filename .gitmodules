@@ -1,0 +1,6 @@
+[submodule "backend/COMS20805-SentimentAnalysis"]
+	path = backend/COMS20805-SentimentAnalysis
+	url = https://github.com/NavyaZaveri/COMS20805-SentimentAnalysis.git
+[submodule "backend/es_cloud"]
+	path = backend/es_cloud
+	url = https://github.com/NavyaZaveri/es_cloud.git

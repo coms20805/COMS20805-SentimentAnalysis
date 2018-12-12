@@ -2,7 +2,11 @@ package com.uob.esclient.search;
 
 import java.util.Objects;
 import java.util.function.Consumer;
-
+/*
+This class represents a SearchQuery
+that is used  by the ElasticClient to find
+relevant posts.
+ */
 
 public class SearchQuery {
     public final String literalQuery;
