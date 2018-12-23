@@ -31,9 +31,9 @@ class TwitterScraper:
         timestamp = twitter_json.created_at
 
         content = " ".join(re.findall("[a-zA-Z:./0-9]+", content))
-        p = Post(content=content, url=url, id=int(twitter_json.id_str))
+        post = Post(content=content, url=url, id=int(twitter_json.id_str))
 
-        return p
+        return post
 
     def fetch(self, url):
 
@@ -52,7 +52,10 @@ class TwitterScraper:
 
         post_set = set()
 
-        tweets = self.api.search(q=search_term+ " -filter:retweets AND -filter:replies", count=limit, lang="en")
+        tweets = self.api.search(
+            q=search_term + " -filter:retweets AND -filter:replies",
+            count=limit,
+            lang="en")
 
         for tweet in tweets:
             post_set.add(self._unmarshal(tweet))

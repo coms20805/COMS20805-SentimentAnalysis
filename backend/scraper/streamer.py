@@ -22,7 +22,7 @@ def get_topics():
     with open(TWITTER_DATASET_PATH) as f:
         lines = f.readlines()
         for topic in lines:
-            print(topic.strip(), len(topic.strip()))
+            print(topic.strip())
             topics.append(topic.strip())
     return topics
 
@@ -40,7 +40,7 @@ def main():
                     print(json_post)
 
             except langdetect.lang_detect_exception.LangDetectException:
-                print("Weird post... " + post.content)
+                print("language not detected... " + post.content)
 
 
 if __name__ == "__main__":
