@@ -11,9 +11,10 @@ import tweepy
 from post import Post
 import re
 import os
+from scraper_interface import Scraper
 
 
-class TwitterScraper:
+class TwitterScraper(Scraper):
     def __init__(self):
         self.consumer_key = os.getenv("consumer_key")
         self.consumer_secret = os.getenv("consumer_secret")
