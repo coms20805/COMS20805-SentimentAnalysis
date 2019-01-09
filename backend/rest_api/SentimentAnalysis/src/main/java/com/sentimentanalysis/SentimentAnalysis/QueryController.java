@@ -7,20 +7,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-@RestController
-public class QueryController {
+@RestController public class QueryController {
 
-    @CrossOrigin(origins="*")
+    @CrossOrigin(origins = "*")
     @GetMapping("/api/search")
-    public Result search(@RequestParam(value="query", defaultValue="") String query) {
+    public Result search(@RequestParam(value = "query", defaultValue = "") String query) {
         // This is temporary
         // TODO: modularise and refactor
 
         List<Post> posts;
         try {
             posts = ESQueryController.esQuery(query);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 

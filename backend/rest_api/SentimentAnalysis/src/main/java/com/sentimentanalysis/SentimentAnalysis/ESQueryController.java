@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class ESQueryController {
 
-    public static List<Post> esQuery(String query) throws UnknownHostException, UnirestException {
+    public static List<Post> esQuery(String query) throws UnirestException {
 
         HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.get("https://es-app.herokuapp.com/query").
                 queryString("literal_query", query). //can alternatively pass a map
