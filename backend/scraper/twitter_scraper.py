@@ -26,6 +26,12 @@ class TwitterScraper:
 
     def _unmarshal(self, twitter_json):
 
+        """
+        Converts json to Post
+        :param twitter_json:
+        :return: Post
+        """
+
         content = twitter_json.text.encode('utf8').decode()
         url = 'https://twitter.com/i/web/status/' + twitter_json.id_str
         timestamp = twitter_json.created_at
