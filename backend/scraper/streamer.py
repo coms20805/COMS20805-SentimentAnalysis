@@ -40,10 +40,10 @@ def run(production, limit, verbose):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, required=False, help="how many tweets to scrape?")
-    parser.add_argument('--production', default=False, type=lambda x: (str(x).lower() == 'true'))
+    parser.add_argument('--production', default=False, type=lambda x: (str(x).lower() == 'true'),
+                        help="run on production instance?--")
     parser.add_argument("--verbose", type=bool, required=False, help="log each post on console when scraping",
                         default=True)
 
     args = parser.parse_args()
-    print(args.production)
     run(args.production, args.limit, args.verbose)
