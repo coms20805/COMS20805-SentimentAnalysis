@@ -9,7 +9,8 @@ ES_ENDPOINT = "https://es-app.herokuapp.com/insert"
 
 
 def to_dict(post):
-    json_post = {"id": post.id, "content": post.content, "url": post.url, "score": post.score}
+    json_post = {"id": post.id, "content": post.content, "url": post.url, "score": post.score,
+                 "timestamp": post.timestamp}
     return {"post": json_post}
 
 

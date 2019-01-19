@@ -17,7 +17,6 @@ class HnScraper(Scraper):
         params = {"query": search_keyword}
         req = requests.get(self.BASE_URL, params=params)
 
-        #more memory efficient than a list comprehension
         for json_post in req.json()["hits"]:
             yield self._unmarshal(json_post)
 

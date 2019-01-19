@@ -38,7 +38,7 @@ class TwitterScraper(Scraper):
         timestamp = twitter_json.created_at
 
         content = " ".join(re.findall("[a-zA-Z:./0-9]+", content))
-        post = Post(content=content, url=url, id=int(twitter_json.id_str))
+        post = Post(content=content, url=url, id=int(twitter_json.id_str), timestamp=timestamp)
 
         return post
 

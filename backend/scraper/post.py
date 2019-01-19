@@ -35,8 +35,8 @@ class Post:
         return self._id
 
     def __str__(self):
-        return "{content=%s, url =%s, score=%s}" \
-               % (self.content, self.url, self.score)
+        return "{content=%s, url =%s, score=%s, timestamp=%s}" \
+               % (self.content, self.url, self.score, self.timestamp)
 
     def __eq__(self, other):
         """
@@ -45,4 +45,4 @@ class Post:
         return self.content == other.content
 
     def __hash__(self):
-        return hash((self.content))
+        return hash(self.content)
