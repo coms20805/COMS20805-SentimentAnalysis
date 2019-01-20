@@ -7,8 +7,15 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.net.UnknownHostException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.Value;
 
 public class App {
@@ -17,16 +24,15 @@ public class App {
     /* A generic Post that represents the documents
     stored in the elasticsearch database
     */
-    @Value
-    private static class Post {
-        private final String content;
-        private final int timestamp;
-        private final String url;
-        private final double score;
+    @Value private static class Post {
+        private String content;
+        private String timestamp;
+        private String url;
+        private double score;
 
     }
 
-    public static void main(String[] args) throws UnknownHostException, UnirestException {
+    public static void main(String[] args) throws UnirestException {
 
         /*
         ---  Deprecated ----
@@ -45,12 +51,12 @@ public class App {
         */
 
         HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.get("https://es-app.herokuapp.com/query").
-                queryString("literal_query", "python"). //can alternatively pass a map
+                queryString("literal_query", "golang"). //can alternatively pass a map
                 asJson();
 
         String stringifiedJsonList = jsonNodeHttpResponse.getBody().getObject().get("result").toString();
         Gson gson = new Gson();
-        Post _posts[] = gson.fromJson(stringifiedJsonList, Post[].class);
-        Arrays.stream(_posts).forEach(System.out::println);
+        Post posts[] = gson.fromJson(stringifiedJsonList, Post[].class);
+        Arrays.stream(posts).forEach(System.out::println);
     }
 }
