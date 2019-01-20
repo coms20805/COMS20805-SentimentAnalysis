@@ -33,14 +33,13 @@ def run(production, limit, verbose):
             if production:
                 r = requests.post(ES_ENDPOINT, json=json_post)
                 print(r.status_code)
-                print(json_post)
             if verbose:
                 print(post)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--limit", type=int, required=False, help="how many tweets to scrape?")
+    parser.add_argument("--limit", type=int, required=False, help="how many tweets to scrape per topic?")
     parser.add_argument('--production', default=False, type=lambda x: (str(x).lower() == 'true'),
                         help="run on production instance?--")
     parser.add_argument("--verbose", type=bool, required=False, help="log each post on console when scraping",
