@@ -1,14 +1,12 @@
 package com.sentimentanalysis.SentimentAnalysis;
 
-import java.util.Date;
-
 class Post {
     private String content;
-    private int timestamp;
+    private String timestamp;
     private String url;
     private double score;
 
-    Post(String content, int timestamp, String url, double score) {
+    Post(String content, String timestamp, String url, double score) {
         this.content = content;
         this.timestamp = timestamp;
         this.url = url;
@@ -19,7 +17,7 @@ class Post {
         return content;
     }
 
-    public int getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
