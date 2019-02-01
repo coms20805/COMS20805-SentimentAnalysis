@@ -15,7 +15,7 @@ public class ESQueryController {
 
     public static List<Post> esQuery(String query) throws UnknownHostException, UnirestException {
 
-        HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.get("https://es-app.herokuapp.com/query").
+        HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.get("https://es-app.herokuapp.com/search").
                 queryString("literal_query", query). //can alternatively pass a map
                 asJson();
 
