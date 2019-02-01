@@ -6,6 +6,8 @@ import * as qs from "query-string";
 import RatingBox from "./RatingBox";
 import PostList from "./PostList";
 import {withRouter} from "react-router-dom";
+import PlotLayout from "./PlotLayout";
+import Header from "./Header";
 
 
 class ResultsLayout extends Component {
@@ -42,31 +44,33 @@ class ResultsLayout extends Component {
 
     render() {
         return(
-            <div id="results">
-                <Grid>
+            <Grid>
+                <Header/>
+                <div id="results">
                     <Row className="show-grid" xs={8} xsOffset={4}>
                         <Col xs={8} xsOffset={2}>
-                            { this.state.isLoading ?
-                                <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query}/>
+                            {this.state.isLoading ?
+                                <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
                                 :
-                                    [ this.state.posts && this.state.posts.length === 0 ?
-                                        <div>
-                                            <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query}/>
-                                            <p>No results</p>
-                                        </div>
-                                        :
-                                        <div>
-                                            <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query}/>
-                                            <p>There are results!</p>
-                                            <RatingBox rating={this.state.rating}/>
-                                            <PostList posts={this.state.posts}/>
-                                        </div>
-                                    ]
+                                [this.state.posts && this.state.posts.length === 0 ?
+                                    <div>
+                                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                                        <p>No results</p>
+                                    </div>
+                                    :
+                                    <div>
+                                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                                        <p>There are results!</p>
+                                        <RatingBox rating={this.state.rating} />
+                                        <PostList posts={this.state.posts} />
+                                        <PlotLayout />
+                                    </div>
+                                ]
                             }
                         </Col>
                     </Row>
-                </Grid>
-            </div>
+                </div>
+            </Grid>
         );
     }
 }
