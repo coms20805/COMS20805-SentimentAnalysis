@@ -18,6 +18,7 @@ class SearchBar extends Component {
     }
 
     render() {
+
         return (
             <div id="search-bar">
                 <form onSubmit={this.props.handleSubmit}>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import {Col, Grid, Row} from "react-bootstrap";
-import {SearchService} from "../api/SearchService";
+import SearchService from "../api/SearchService";
 import * as qs from "query-string";
 import RatingBox from "./RatingBox";
 import PostList from "./PostList";
@@ -22,15 +22,15 @@ class ResultsLayout extends Component {
     async componentDidMount() {
         const parsedQuery = qs.parse(this.props.location.search).query;
         if (parsedQuery && parsedQuery.length > 0) {
-            this.loadResults(parsedQuery);
+            this.loadPosts(parsedQuery);
         }
         else {
             this.props.history.push("/search");
         }
     }
 
-    async loadResults(query) {
-        const data = await SearchService.getResults(query);
+    async loadPosts(query) {
+        const data = await SearchService.getPosts(query);
         this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts});
     }
 
@@ -38,7 +38,7 @@ class ResultsLayout extends Component {
         e.preventDefault();
         if (e.target.query.value.length > 0) {
             this.props.history.push("/search?query=" + e.target.query.value);
-            this.loadResults(e.target.query.value);
+            this.loadPosts(e.target.query.value);
         }
     }
 
@@ -60,10 +60,9 @@ class ResultsLayout extends Component {
                                     :
                                     <div>
                                         <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
-                                        <p>There are results!</p>
-                                        <RatingBox rating={this.state.rating} />
-                                        <PostList posts={this.state.posts} />
-                                        <PlotLayout />
+                                        <PlotLayout query={this.state.query}/>
+                                        <RatingBox rating={this.state.rating}/>
+                                        <PostList posts={this.state.posts}/>
                                     </div>
                                 ]
                             }
