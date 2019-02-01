@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
-import {Col, Grid, Row} from "react-bootstrap";
+import {Col, Grid, Row, Button} from "react-bootstrap";
 import SearchService from "../api/SearchService";
 import * as qs from "query-string";
 import RatingBox from "./RatingBox";
@@ -14,6 +14,7 @@ class ResultsLayout extends Component {
 
     state = {
         isLoading: true,
+        showPlot: false,
         query: "",
         rating: undefined,
         posts: []
@@ -42,7 +43,19 @@ class ResultsLayout extends Component {
         }
     }
 
+    handleTogglePlot() {
+        if (this.state.showPlot) {
+            this.setState({showPlot: false});
+        }
+        else {
+            this.setState({showPlot: true});
+        }
+    }
+
     render() {
+        const plot = this.state.showPlot ? <div id="plot-container"><Button onClick={this.handleTogglePlot.bind(this)}>Hide plot</Button><PlotLayout query={this.state.query}/></div>
+                    :
+                    <div id="plot-container"><Button onClick={this.handleTogglePlot.bind(this)}>Show plot</Button></div>;
         return(
             <Grid>
                 <Header/>
@@ -60,7 +73,7 @@ class ResultsLayout extends Component {
                                     :
                                     <div>
                                         <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
-                                        <PlotLayout query={this.state.query}/>
+                                        {plot}
                                         <RatingBox rating={this.state.rating}/>
                                         <PostList posts={this.state.posts}/>
                                     </div>
