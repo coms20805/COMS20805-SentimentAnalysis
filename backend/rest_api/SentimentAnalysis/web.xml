@@ -1,0 +1,3 @@
+<error-page>
+    <location>/errors</location>
+</error-page>
