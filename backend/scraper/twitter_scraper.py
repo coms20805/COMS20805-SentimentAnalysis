@@ -6,11 +6,13 @@ Example usage:
 scraper = TwitterScraper()
 posts = scraper.fetch_posts('Node.js', 50)
 """
-import requests
-import tweepy
-from post import Post
-import re
 import os
+import re
+
+import pendulum
+import tweepy
+
+from post import Post
 from scraper_interface import Scraper
 
 
@@ -35,10 +37,14 @@ class TwitterScraper(Scraper):
 
         content = twitter_json.text.encode('utf8').decode()
         url = 'https://twitter.com/i/web/status/' + twitter_json.id_str
+
+        ## a given timestamp looks like this: '2019-02-04 01:20:29'
+        ## We just want the year, month and day
         timestamp = str(twitter_json.created_at)
+        year_month_day = pendulum.parse(timestamp).strftime("%Y-%m-%d")
 
         content = " ".join(re.findall("[a-zA-Z:./0-9]+", content))
-        post = Post(content=content, url=url, id=int(twitter_json.id_str), timestamp=timestamp)
+        post = Post(content=content, url=url, timestamp=year_month_day)
 
         return post
 

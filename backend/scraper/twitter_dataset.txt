@@ -7,3 +7,8 @@ kotlin
 swift
 ruby
 golang
+tensorflow
+rust language
+android
+ocaml
+

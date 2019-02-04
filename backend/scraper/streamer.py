@@ -9,7 +9,7 @@ ES_ENDPOINT = "https://es-app.herokuapp.com/insert"
 
 
 def to_dict(post):
-    json_post = {"id": post.id, "content": post.content, "url": post.url, "score": post.score,
+    json_post = {"content": post.content, "url": post.url, "score": post.score,
                  "timestamp": post.timestamp}
     return {"post": json_post}
 
@@ -29,9 +29,8 @@ def run(production, limit, verbose):
     tw = TwitterScraper()
     for topic in topics:
         for post in tw.fetch_posts(topic, limit):
-            json_post = to_dict(post)
             if production:
-                r = requests.post(ES_ENDPOINT, json=json_post)
+                r = requests.post(ES_ENDPOINT, json={"post": post.to_dict()})  # this is the json format
                 print(r.status_code)
             if verbose:
                 print(post)
