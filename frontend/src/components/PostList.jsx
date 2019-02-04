@@ -10,6 +10,7 @@ class PostList extends Component {
                     <thead>
                         <tr>
                             <th>Score</th>
+                            <th>Timestamp</th>
                             <th>Content</th>
                             <th>URL</th>
                         </tr>
