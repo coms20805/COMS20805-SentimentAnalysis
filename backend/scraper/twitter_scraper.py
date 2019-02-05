@@ -40,6 +40,7 @@ class TwitterScraper(Scraper):
 
         ## a given timestamp looks like this: '2019-02-04 01:20:29'
         ## We just want the year, month and day
+
         timestamp = str(twitter_json.created_at)
         year_month_day = pendulum.parse(timestamp).strftime("%Y-%m-%d")
 
