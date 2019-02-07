@@ -41,10 +41,9 @@ public class App {
             Gson gson = new Gson();
             Post posts[] = gson.fromJson(jsonString, Post[].class);
             return Arrays.stream(posts).collect(Collectors.toList());
-
         }
-
     }
+
 
     private static class DailyMedians {
 
@@ -85,17 +84,18 @@ public class App {
 
         //Example 1: fetch the daily medians for some framework
         HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.get("https://es-app.herokuapp.com/median").
-                queryString("framework", "golang"). //can alternatively pass a map
+                queryString("framework", "rust"). //can alternatively pass a map
                 asJson();
 
         String jsonString = jsonNodeHttpResponse.getBody().toString();
         Map<String, Double> medians = DailyMedians.parse(jsonString);
-        System.out.println(medians);
+        System.out.println("Median scores " + medians);
+        System.out.println("-----------------------------------------------------");
 
 
         //Example 2: fetch some posts related to a given framework
         HttpResponse<JsonNode> jsonResponse = Unirest.get("https://es-app.herokuapp.com/search").
-                queryString("literal_query", "golang"). //can also specify limit
+                queryString("literal_query", "rust"). //can also specify limit
                 asJson();
 
 
