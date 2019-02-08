@@ -7,8 +7,7 @@ class PlotLayout extends Component {
     state = {
         isLoading: true,
         dates: undefined,
-        scores: undefined,
-        posts: undefined
+        scores: undefined
     };
 
     async componentDidMount() {
@@ -17,7 +16,7 @@ class PlotLayout extends Component {
 
     async loadTimeSeries(query) {
         const data = await SearchService.getTimeSeries(query);
-        this.setState({isLoading: false, dates: data.dates, scores: data.scores, posts: data.posts});
+        this.setState({isLoading: false, dates: Object.keys(data), scores: Object.values(data)});
     }
 
     render() {
@@ -36,7 +35,7 @@ class PlotLayout extends Component {
                                 marker: { color: 'red' },
                             },
                         ]}
-                        layout={{ width: 800, height: 400, title: 'A Plot' }}
+                        layout={{ width: 800, height: 400, title: 'Historical Sentiment' }}
                     />
                 }
             </div>
