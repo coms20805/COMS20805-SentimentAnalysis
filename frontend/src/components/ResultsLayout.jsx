@@ -32,7 +32,7 @@ class ResultsLayout extends Component {
 
     async loadPosts(query) {
         const data = await SearchService.getPosts(query);
-        this.setState({isLoading: false, query: query, rating: 0.0, posts: data.result});
+        this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts});
     }
 
     handleSubmit(e) {
