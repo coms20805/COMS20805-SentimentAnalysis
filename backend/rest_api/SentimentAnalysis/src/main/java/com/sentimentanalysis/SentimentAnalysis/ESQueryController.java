@@ -36,10 +36,12 @@ public class ESQueryController {
 
         Gson gson = new Gson();
 
-        String responseBody = jsonNodeHttpResponse.getBody().getObject().toString();
+        String timestamps = jsonNodeHttpResponse.getBody().getObject().get("timestamps").toString();
+        String medians = jsonNodeHttpResponse.getBody().getObject().get("medians").toString();
 
-        Type type = new TypeToken<Map<String, Double>>(){}.getType();
-        MedianResponse response = new MedianResponse(gson.fromJson(responseBody, type));
+        Type timestampsType = new TypeToken<List<String>>(){}.getType();
+        Type mediansType = new TypeToken<List<Double>>(){}.getType();
+        MedianResponse response = new MedianResponse(gson.fromJson(timestamps, timestampsType), gson.fromJson(medians, mediansType));
 
         return response;
     }

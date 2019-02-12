@@ -5,17 +5,27 @@ import java.util.Map;
 
 public class MedianResponse {
 
-    private Map<String, Double> medians;
+   private List<String> timestamps;
+   private List<Double> medians;
 
-    public MedianResponse(Map<String, Double> medians) {
+    public MedianResponse(List<String> timestamps, List<Double> medians) {
+        this.timestamps = timestamps;
         this.medians = medians;
     }
 
-    public Map<String, Double> getMedians() {
+    public List<String> getTimestamps() {
+        return timestamps;
+    }
+
+    public void setTimestamps(List<String> timestamps) {
+        this.timestamps = timestamps;
+    }
+
+    public List<Double> getMedians() {
         return medians;
     }
 
-    public void setMedians(Map<String, Double> medians) {
+    public void setMedians(List<Double> medians) {
         this.medians = medians;
     }
 }

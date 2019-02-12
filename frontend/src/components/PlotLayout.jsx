@@ -16,7 +16,7 @@ class PlotLayout extends Component {
 
     async loadTimeSeries(query) {
         const data = await SearchService.getTimeSeries(query);
-        this.setState({isLoading: false, dates: Object.keys(data.medians), scores: Object.values(data.medians)});
+        this.setState({isLoading: false, dates: data.timestamps, scores: data.medians});
     }
 
     render() {
