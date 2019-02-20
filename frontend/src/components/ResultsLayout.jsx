@@ -8,6 +8,7 @@ import PostList from "./PostList";
 import {withRouter} from "react-router-dom";
 import PlotLayout from "./PlotLayout";
 import Header from "./Header";
+import Error from "./Error";
 
 
 class ResultsLayout extends Component {
@@ -17,7 +18,9 @@ class ResultsLayout extends Component {
         showPlot: false,
         query: "",
         rating: undefined,
-        posts: []
+        posts: [],
+        error: false,
+        errorCode: undefined
     };
 
     async componentDidMount() {
@@ -31,8 +34,14 @@ class ResultsLayout extends Component {
     }
 
     async loadPosts(query) {
-        const data = await SearchService.getPosts(query);
-        this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts});
+        let data;
+        try {
+            data = await SearchService.getPosts(query);
+            this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts});
+        }
+        catch (error) {
+            this.setState({error: true, errorCode: error.message});
+        }
     }
 
     handleSubmit(e) {
@@ -56,10 +65,7 @@ class ResultsLayout extends Component {
         const plot = this.state.showPlot ? <div id="plot-container"><Button onClick={this.handleTogglePlot.bind(this)}>Hide plot</Button><PlotLayout query={this.state.query}/></div>
                     :
                     <div id="plot-container"><Button onClick={this.handleTogglePlot.bind(this)}>Show plot</Button></div>;
-        return(
-            <Grid>
-                <Header/>
-                <div id="results">
+        const results = <div id="results">
                     <Row className="show-grid" xs={8} xsOffset={4}>
                         <Col xs={8} xsOffset={2}>
                             {this.state.isLoading ?
@@ -81,7 +87,12 @@ class ResultsLayout extends Component {
                             }
                         </Col>
                     </Row>
-                </div>
+                </div>;
+        return(
+            <Grid>
+                <Header/>
+                {console.log(this.state.error)}
+                {this.state.error ? <Error code={this.state.errorCode} /> : results}
             </Grid>
         );
     }
