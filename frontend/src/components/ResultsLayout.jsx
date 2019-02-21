@@ -36,10 +36,10 @@ class ResultsLayout extends Component {
     async loadPosts(query) {
         SearchService.getPosts(query)
             .then(data => {
-                this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts});
+                this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts, showPlot: false});
             })
             .catch(error => {
-                this.setState({error: true, errorCode: error.message});
+                this.setState({error: true, errorCode: error.message, showPlot: false});
             });
     }
 
