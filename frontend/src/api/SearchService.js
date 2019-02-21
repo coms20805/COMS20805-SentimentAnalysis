@@ -20,7 +20,6 @@ export default class SearchService {
                 return response.json();
             })
             .catch(error => {
-                console.log(error);
                 throw Error(error.message);
             });
     }
@@ -32,7 +31,7 @@ export default class SearchService {
                 return response.json();
             })
             .catch(error => {
-                throw error;
+                throw Error(error.message);
             });
     }
 }

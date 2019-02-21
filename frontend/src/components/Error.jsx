@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import {Grid} from "react-bootstrap";
-import Header from "./Header";
 
 export default class Error extends Component {
     render() {

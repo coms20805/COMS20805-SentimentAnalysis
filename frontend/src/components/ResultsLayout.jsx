@@ -34,14 +34,13 @@ class ResultsLayout extends Component {
     }
 
     async loadPosts(query) {
-        let data;
-        try {
-            data = await SearchService.getPosts(query);
-            this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts});
-        }
-        catch (error) {
-            this.setState({error: true, errorCode: error.message});
-        }
+        SearchService.getPosts(query)
+            .then(data => {
+                this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts});
+            })
+            .catch(error => {
+                this.setState({error: true, errorCode: error.message});
+            });
     }
 
     handleSubmit(e) {
@@ -91,7 +90,6 @@ class ResultsLayout extends Component {
         return(
             <Grid>
                 <Header/>
-                {console.log(this.state.error)}
                 {this.state.error ? <Error code={this.state.errorCode} /> : results}
             </Grid>
         );
