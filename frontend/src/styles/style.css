@@ -1,0 +1,13 @@
+.grid-container {
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'left left main main right right'
+      'footer footer footer footer footer footer';
+}
+
+.main {
+    grid-area: main;
+    margin: auto;
+    width: 60vw;
+}

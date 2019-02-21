@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./styles/style.css";
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import ResultsLayout from "./components/ResultsLayout";
 import ErrorBoundary from "./components/ErrorBoundary";
