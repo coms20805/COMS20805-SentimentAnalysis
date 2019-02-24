@@ -18,6 +18,7 @@ class SearchBar extends Component {
     }
 
     render() {
+
         return (
             <div id="search-bar">
                 <form onSubmit={this.props.handleSubmit}>
@@ -34,6 +35,11 @@ class SearchBar extends Component {
                             <InputGroup.Button>
                                 <Button type="submit">
                                     <Glyphicon glyph="search" />
+                                </Button>
+                            </InputGroup.Button>
+                            <InputGroup.Button>
+                                <Button type="compare">
+                                    Compare
                                 </Button>
                             </InputGroup.Button>
                         </InputGroup>
