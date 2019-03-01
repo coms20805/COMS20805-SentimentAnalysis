@@ -19,6 +19,8 @@ def run(limit):
     tw = TwitterScraper()
     for topic in topics:
         for post in tw.fetch_posts(topic, limit):
-            requests.post(ENDPOINT, json={"post": post.to_dict()})
+            status = requests.post(ENDPOINT, json={"post": post.to_dict()}).status_code
+            with open("log.txt", 'a') as f:
+            	print("Post: " + post.content + "\nStatus: " + str(status), file=f)
 
 run(POST_COUNT)
