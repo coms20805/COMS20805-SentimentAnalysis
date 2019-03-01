@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Plot from "react-plotly.js";
+import {Line as LineChart} from "react-chartjs";
 import SearchService from "../api/SearchService";
 import Error from "./Error";
 
@@ -31,17 +31,22 @@ class PlotLayout extends Component {
         const plot = this.state.isLoading ?
                         <p>Loading...</p>
                         :
-                        <Plot
-                            data={[
-                                {
-                                    x: this.state.dates,
-                                    y: this.state.scores,
-                                    type: 'graph',
-                                    mode: 'lines+points',
-                                    marker: { color: 'red' },
-                                },
-                            ]}
-                            layout={{ width: 800, height: 400, title: 'Historical Sentiment' }}
+                        <LineChart
+                            data={{
+                                labels: this.state.dates,
+                                datasets: [{
+                                    label: "Historical Sentiment",
+                                    data: this.state.scores,
+                                    fillColor: "rgba(0,0,0,0)",
+                                    strokeColor: "red"
+                                }]
+                            }}
+                            options={{
+                                fill: false,
+                                responsive: true
+                            }}
+                            width="600"
+                            height="400"
                         />;
         return(
             <div id="plot">

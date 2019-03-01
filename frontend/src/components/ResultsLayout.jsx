@@ -4,7 +4,7 @@ import {Button} from "react-bootstrap";
 import SearchService from "../api/SearchService";
 import * as qs from "query-string";
 import RatingBox from "./RatingBox";
-import PostList from "./PostList";
+import PostList from "./Post/PostList";
 import {withRouter} from "react-router-dom";
 import PlotLayout from "./PlotLayout";
 import Header from "./Header";
