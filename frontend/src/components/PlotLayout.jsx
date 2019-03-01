@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import Plot from "react-plotly.js";
 import SearchService from "../api/SearchService";
+import Error from "./Error";
 
 class PlotLayout extends Component {
 
     state = {
         isLoading: true,
         dates: undefined,
-        scores: undefined
+        scores: undefined,
+        error: false,
+        errorCode: undefined
     };
 
     async componentDidMount() {
@@ -15,29 +18,34 @@ class PlotLayout extends Component {
     }
 
     async loadTimeSeries(query) {
-        const data = await SearchService.getTimeSeries(query);
-        this.setState({isLoading: false, dates: data.timestamps, scores: data.medians});
+        SearchService.getTimeSeries(query)
+            .then(data => {
+                this.setState({isLoading: false, dates: data.timestamps, scores: data.medians});
+            })
+            .catch(error => {
+                this.setState({error: true, errorCode: error.message});
+            });
     }
 
     render() {
+        const plot = this.state.isLoading ?
+                        <p>Loading...</p>
+                        :
+                        <Plot
+                            data={[
+                                {
+                                    x: this.state.dates,
+                                    y: this.state.scores,
+                                    type: 'graph',
+                                    mode: 'lines+points',
+                                    marker: { color: 'red' },
+                                },
+                            ]}
+                            layout={{ width: 800, height: 400, title: 'Historical Sentiment' }}
+                        />;
         return(
             <div id="plot">
-                {this.state.isLoading ?
-                    <p>Loading...</p>
-                    :
-                    <Plot
-                        data={[
-                            {
-                                x: this.state.dates,
-                                y: this.state.scores,
-                                type: 'graph',
-                                mode: 'lines+points',
-                                marker: { color: 'red' },
-                            },
-                        ]}
-                        layout={{ width: 800, height: 400, title: 'Historical Sentiment' }}
-                    />
-                }
+                {this.state.error ? <Error code={this.state.errorCode} /> : plot}
             </div>
         );
     }

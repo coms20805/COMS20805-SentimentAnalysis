@@ -20,7 +20,7 @@ class SearchBar extends Component {
     render() {
 
         return (
-            <div id="search-bar">
+            <div className="search-bar">
                 <form onSubmit={this.props.handleSubmit}>
                     <FormGroup>
                         <InputGroup>
