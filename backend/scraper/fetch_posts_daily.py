@@ -1,7 +1,7 @@
 from twitter_scraper import TwitterScraper
 import requests
 
-PATH = "/home/ben/Documents/COMS20805-SentimentAnalysis/backend/scraper/" #Change to path where the twitter scraper is
+PATH = "/home/ubuntu/dev/COMS20805-SentimentAnalysis/backend/scraper/"
 TWITTER_TOPICS_PATH = PATH + "twitter_dataset.txt"
 POST_COUNT = 1 #Number of posts from each topic to scrape
 ENDPOINT = "https://es-app.herokuapp.com/insert"
