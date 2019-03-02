@@ -1,14 +1,14 @@
-scala
-java
+scala programming
+java programming
 javascript
-react
-python
-kotlin
-swift
-ruby
-golang
-tensorflow
+react framework
+python programming
+kotlin programming
+swift programming
+ruby programming
+golang programming
+tensorflow programming language
 rust language
 android
-ocaml
+ocaml programming language
 

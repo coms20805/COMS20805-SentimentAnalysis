@@ -26,9 +26,9 @@ def get_topics():
 
 def run(production, limit, verbose):
     topics = get_topics()
-    tw = TwitterScraper()
+    twitter = TwitterScraper()
     for topic in topics:
-        for post in tw.fetch_posts(topic, limit):
+        for post in twitter.fetch_posts(topic, limit):
             if production:
                 r = requests.post(ES_ENDPOINT, json={"post": post.to_dict()})  # this is the json format
                 print(r.status_code)

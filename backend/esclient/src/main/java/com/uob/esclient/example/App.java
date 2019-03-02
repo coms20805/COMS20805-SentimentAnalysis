@@ -84,7 +84,7 @@ public class App {
 
         //Example 1: fetch the daily medians for some framework
         HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.get("https://es-app.herokuapp.com/median").
-                queryString("framework", "rust"). //can alternatively pass a map
+                queryString("framework", "python"). //can alternatively pass a map
                 asJson();
 
         String jsonString = jsonNodeHttpResponse.getBody().toString();
@@ -95,7 +95,7 @@ public class App {
 
         //Example 2: fetch some posts related to a given framework
         HttpResponse<JsonNode> jsonResponse = Unirest.get("https://es-app.herokuapp.com/search").
-                queryString("literal_query", "rust"). //can also specify limit
+                queryString("literal_query", "golang"). //can also specify limit
                 asJson();
 
 
