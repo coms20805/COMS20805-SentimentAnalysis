@@ -18,10 +18,10 @@ from scraper_interface import Scraper
 
 class TwitterScraper(Scraper):
     def __init__(self):
-        self.consumer_key = os.getenv("consumer_key")
-        self.consumer_secret = os.getenv("consumer_secret")
-        self.access_token = os.getenv("access_token")
-        self.access_token_secret = os.getenv("access_token_secret")
+        self.consumer_key = os.getenv("CONSUMER_KEY")
+        self.consumer_secret = os.getenv("CONSUMER_SECRET")
+        self.access_token = os.getenv("ACCESS_TOKEN")
+        self.access_token_secret = os.getenv("ACCESS_TOKEN_SECRET")
         self.auth = tweepy.OAuthHandler(self.consumer_key,
                                         self.consumer_secret)
         self.auth.set_access_token(self.access_token, self.access_token_secret)
