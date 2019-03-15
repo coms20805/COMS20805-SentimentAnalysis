@@ -12,3 +12,26 @@ rust language
 android
 ocaml programming language
 
+android
+c
+c++
+golang
+haskell
+java
+javascript
+kotlin
+lisp
+matlab
+ocaml
+pascal
+perl
+php
+python
+react
+ruby
+rust language
+scala
+scratch
+sql
+swift
+tensorflow
