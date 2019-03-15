@@ -1,4 +1,4 @@
-const API_URL = "http://132.145.54.186:2000/api";
+const API_URL = "https://www.techsentiment.com/api";
 
 const buildUrl = (path) => API_URL + path;
 
