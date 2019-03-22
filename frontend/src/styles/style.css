@@ -16,6 +16,15 @@ body {
     width: 60vw;
 }
 
+.plot-container {
+    margin-bottom: 10px;
+}
+
+.plot-container button {
+    margin: 0 auto;
+    width: 100%;
+}
+
 .rating-box {
     background-color: #f8f8f8;
     border: 1px solid #ccc;
@@ -27,6 +36,7 @@ body {
 
 .rating-description {
     /* vertical-align: middle; */
+    font-size: 1em;
     display: inline-block;
     padding: 5px 5px 15px 5px;
     width: 80%;

@@ -13,6 +13,15 @@ class PlotLayout extends Component {
         errorCode: undefined
     };
 
+    roundScores(scores) {
+        let scoresRounded = []
+        const n = scores.length
+        for (var i = 0; i < n; i++) {
+            scoresRounded.push(parseFloat(Math.round(scores[i] * 100) / 100).toFixed(2));
+        }
+        return scoresRounded;
+    }
+
     async componentDidMount() {
         this.loadTimeSeries(this.props.query);
     }
@@ -20,7 +29,7 @@ class PlotLayout extends Component {
     async loadTimeSeries(query) {
         SearchService.getTimeSeries(query)
             .then(data => {
-                this.setState({isLoading: false, dates: data.timestamps, scores: data.medians});
+                this.setState({isLoading: false, dates: data.timestamps, scores: this.roundScores(data.medians)});
             })
             .catch(error => {
                 this.setState({error: true, errorCode: error.message});
@@ -42,11 +51,12 @@ class PlotLayout extends Component {
                                 }]
                             }}
                             options={{
+                                bezierCurve: false,
                                 fill: false,
                                 responsive: true
                             }}
                             width="600"
-                            height="400"
+                            height="300"
                         />;
         return(
             <div id="plot">

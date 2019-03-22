@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
-import {Button} from "react-bootstrap";
 import SearchService from "../api/SearchService";
 import * as qs from "query-string";
 import RatingBox from "./RatingBox";
@@ -61,9 +60,9 @@ class ResultsLayout extends Component {
     }
 
     render() {
-        const plot = this.state.showPlot ? <div id="plot-container"><Button onClick={this.handleTogglePlot.bind(this)}>Hide plot</Button><PlotLayout query={this.state.query} /></div>
+        const plot = this.state.showPlot ? <div className="plot-container"><button type="button" className="btn btn-secondary" onClick={this.handleTogglePlot.bind(this)}>Hide plot</button><PlotLayout query={this.state.query} /></div>
             :
-            <div id="plot-container"><Button onClick={this.handleTogglePlot.bind(this)}>Show plot</Button></div>;
+            <div className="plot-container"><button type="button" className="btn btn-primary" onClick={this.handleTogglePlot.bind(this)}>Show plot</button></div>;
         const results = <div id="results">
                             {this.state.isLoading ?
                                 <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
