@@ -28,5 +28,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "moment": "^2.24.0",
+    "react-moment": "^0.8.4"
+  }
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {Line as LineChart} from "react-chartjs";
 import SearchService from "../api/SearchService";
 import Error from "./Error";
+import moment from "moment";
 
 class PlotLayout extends Component {
 
@@ -14,12 +15,21 @@ class PlotLayout extends Component {
     };
 
     roundScores(scores) {
-        let scoresRounded = []
-        const n = scores.length
+        let scoresRounded = [];
+        const n = scores.length;
         for (var i = 0; i < n; i++) {
             scoresRounded.push(parseFloat(Math.round(scores[i] * 100) / 100).toFixed(2));
         }
         return scoresRounded;
+    }
+
+    formatDates(dates) {
+        let formattedDates = [];
+        const n = dates.length;
+        for (var i = 0; i < n; i++) {
+            formattedDates.push(moment(dates[i]).format("D MMM YYYY"));
+        }
+        return formattedDates;
     }
 
     async componentDidMount() {
@@ -29,7 +39,7 @@ class PlotLayout extends Component {
     async loadTimeSeries(query) {
         SearchService.getTimeSeries(query)
             .then(data => {
-                this.setState({isLoading: false, dates: data.timestamps, scores: this.roundScores(data.medians)});
+                this.setState({isLoading: false, dates: this.formatDates(data.timestamps), scores: this.roundScores(data.medians)});
             })
             .catch(error => {
                 this.setState({error: true, errorCode: error.message});
