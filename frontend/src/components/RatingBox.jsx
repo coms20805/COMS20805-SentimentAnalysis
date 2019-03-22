@@ -15,7 +15,7 @@ class RatingBox extends Component {
         }
         return(
             <div className="rating-box">
-                <div className="rating-description">The sentiment towards this piece of tech is <strong>{ratingLiteral}</strong></div>
+                <div className="rating-description"><span>The sentiment towards this piece of tech is <strong>{ratingLiteral}</strong></span></div>
                 <div className="rating">
                     <div className="rating-text">Rating</div>
                     <div className="rating-number">{ratingNumber}</div>

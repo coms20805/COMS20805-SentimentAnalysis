@@ -3,6 +3,7 @@ import {Line as LineChart} from "react-chartjs";
 import SearchService from "../api/SearchService";
 import Error from "./Error";
 import moment from "moment";
+import {PropagateLoader} from "react-spinners";
 
 class PlotLayout extends Component {
 
@@ -48,7 +49,12 @@ class PlotLayout extends Component {
 
     render() {
         const plot = this.state.isLoading ?
-                        <p>Loading...</p>
+                        <div className="loader">
+                            <PropagateLoader
+                                color={"rgb(8, 104, 194)"}
+                                margin="10px"
+                            />
+                        </div>
                         :
                         <LineChart
                             data={{

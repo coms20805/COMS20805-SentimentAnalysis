@@ -8,7 +8,7 @@ import {withRouter} from "react-router-dom";
 import PlotLayout from "./PlotLayout";
 import Header from "./Header";
 import Error from "./Error";
-
+import {PropagateLoader} from "react-spinners";
 
 class ResultsLayout extends Component {
 
@@ -65,7 +65,15 @@ class ResultsLayout extends Component {
             <div className="plot-container"><button type="button" className="btn btn-primary" onClick={this.handleTogglePlot.bind(this)}>Show plot</button></div>;
         const results = <div id="results">
                             {this.state.isLoading ?
-                                <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                                <div>
+                                    <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                                    <div className="loader">
+                                        <PropagateLoader
+                                            color={"rgb(8, 104, 194)"}
+                                            margin="10px"
+                                        />
+                                    </div>
+                                </div>
                                 :
                                 [this.state.posts && this.state.posts.length === 0 ?
                                     <div>
