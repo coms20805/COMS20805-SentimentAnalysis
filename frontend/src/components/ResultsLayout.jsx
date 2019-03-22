@@ -65,29 +65,29 @@ class ResultsLayout extends Component {
             :
             <div id="plot-container"><Button onClick={this.handleTogglePlot.bind(this)}>Show plot</Button></div>;
         const results = <div id="results">
-            {this.state.isLoading ?
-                <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
-                :
-                [this.state.posts && this.state.posts.length === 0 ?
-                    <div>
-                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
-                        <p>No results</p>
-                    </div>
-                    :
-                    <div>
-                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
-                        {plot}
-                        <RatingBox rating={this.state.rating} />
-                        <PostList posts={this.state.posts} />
-                    </div>
-                ]
-            }
-        </div>;
+                            {this.state.isLoading ?
+                                <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                                :
+                                [this.state.posts && this.state.posts.length === 0 ?
+                                    <div>
+                                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                                        <p>No results</p>
+                                    </div>
+                                    :
+                                    <div>
+                                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                                        {plot}
+                                        <RatingBox rating={this.state.rating} />
+                                        <PostList posts={this.state.posts} />
+                                    </div>
+                                ]
+                            }
+                        </div>;
         return(
             <div className="grid-container">
                 <Header/>
                 <div className="main">
-                {this.state.error ? <Error code={this.state.errorCode} /> : results}
+                    {this.state.error ? <Error code={this.state.errorCode} /> : results}
                 </div>
             </div>
         );
