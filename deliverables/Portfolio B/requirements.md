@@ -57,17 +57,20 @@ We have identified two examples of use case goals.
 ---
 
 ## Functional Requirements
+### Usage
+* The software will be able to extract insights from social media posts related to technology.
+* The software will list related posts for every successful query.
+* The software must display an overall rating of a query given by the user.
+* The software will render a plot of historical sentiment values for each successful query.
+* When a malformed query is provided, *fuzzy matching* will take place. The algorithm will find the posts with content that closely matches the original query.
 
-1. The software will be able to extract insights from social media posts related to technology.
-1. It must display an overall rating of a query given by the user.
-1. It must display a list of up to 10 related posts for every successful query. If there are fewer than 10 posts, the front end will display all posts related to its respected query.
-1. When a malformed query is provided *fuzzy matching* will take place.
-  * The algorithm will find correspondences between segments of a text and entries in our database of previous translations.
-1. Our REST API shall be *idempotent*.
-  * Our algorithm can be applied multiple times without affecting the result beyond initial application.
-1. The database will be updated at least once a week.
-1. The development team will be responsible for maintaining and updating the system, with new posts.
-1. The application uses the Elastic search engine to retrieve the closest match to a given query.
+### System
+* Our RESTful API shall be *idempotent*. Our algorithm can be applied multiple times without affecting the result beyond initial application.
+* The database will be updated at least once a week.
+* The development team will be responsible for maintaining and updating the system, with new posts.
+
+### User Interface
+* The user should always be able to return to the previous screen.
 
 ## Non-functional Requirements
 ### Performance
@@ -77,6 +80,7 @@ We have identified two examples of use case goals.
     * Each making 20 requests
     * Let us assume they all access our website in the same 2 hour period
     * [(4.7M * 20 requests) / 365 days] / 2hr / 60min / 60sec = 36 requests per second
+
 
 ### Legislative
 * The software shall be released under the MIT licence.
