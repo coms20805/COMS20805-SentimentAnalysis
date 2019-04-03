@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {Line as LineChart} from "react-chartjs";
 import SearchService from "../api/SearchService";
 import Error from "./Error";
+import moment from "moment";
+import {PropagateLoader} from "react-spinners";
 
 class PlotLayout extends Component {
 
@@ -13,6 +15,24 @@ class PlotLayout extends Component {
         errorCode: undefined
     };
 
+    roundScores(scores) {
+        let scoresRounded = [];
+        const n = scores.length;
+        for (var i = 0; i < n; i++) {
+            scoresRounded.push(parseFloat(Math.round(scores[i] * 100) / 100).toFixed(2));
+        }
+        return scoresRounded;
+    }
+
+    formatDates(dates) {
+        let formattedDates = [];
+        const n = dates.length;
+        for (var i = 0; i < n; i++) {
+            formattedDates.push(moment(dates[i]).format("D MMM YYYY"));
+        }
+        return formattedDates;
+    }
+
     async componentDidMount() {
         this.loadTimeSeries(this.props.query);
     }
@@ -20,7 +40,7 @@ class PlotLayout extends Component {
     async loadTimeSeries(query) {
         SearchService.getTimeSeries(query)
             .then(data => {
-                this.setState({isLoading: false, dates: data.timestamps, scores: data.medians});
+                this.setState({isLoading: false, dates: this.formatDates(data.timestamps), scores: this.roundScores(data.medians)});
             })
             .catch(error => {
                 this.setState({error: true, errorCode: error.message});
@@ -29,7 +49,12 @@ class PlotLayout extends Component {
 
     render() {
         const plot = this.state.isLoading ?
-                        <p>Loading...</p>
+                        <div className="loader">
+                            <PropagateLoader
+                                color={"rgb(8, 104, 194)"}
+                                margin="10px"
+                            />
+                        </div>
                         :
                         <LineChart
                             data={{
@@ -42,11 +67,12 @@ class PlotLayout extends Component {
                                 }]
                             }}
                             options={{
+                                bezierCurve: false,
                                 fill: false,
                                 responsive: true
                             }}
                             width="600"
-                            height="400"
+                            height="300"
                         />;
         return(
             <div id="plot">

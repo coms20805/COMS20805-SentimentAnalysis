@@ -4,7 +4,7 @@ import PostBox from "./PostBox";
 class PostList extends Component {
     render() {
         return(
-            <div id="post-list">
+            <div className="post-list">
                 <table>
                     <thead>
                         <tr>

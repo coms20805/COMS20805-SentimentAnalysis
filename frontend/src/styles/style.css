@@ -16,7 +16,65 @@ body {
     width: 60vw;
 }
 
-table {
+.loader {
+    margin-left: 50%;
+    margin-top: 10px;
+    height: 40px;
+}
+
+.plot-container {
+    margin-bottom: 10px;
+}
+
+.plot-container button {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.rating-box {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    padding: 1em;
+    width: 100%;
+    height: 100px;
+}
+
+.rating-description {
+    /* vertical-align: middle; */
+    font-size: 1.2em;
+    float: left;
+    padding: 5px;
+    width: -moz-calc(100% - 100px);
+    width: -webkit-calc(100% - 100px);
+    width: calc(100% - 100px);
+    height: 100%;
+}
+
+.rating-description span {
+    vertical-align: middle;
+}
+
+.rating {
+    float: left;
+    padding: 5px;
+    width: 100px;
+    height: 100%;
+    text-align: center;
+}
+
+.rating-text {
+    font-size: 1.2em;
+}
+
+.rating-number {
+    /* display: inline-block; */
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.post-list table {
     border: 1px solid #ccc;
     border-collapse: collapse;
     margin: 0;
@@ -25,40 +83,54 @@ table {
     table-layout: fixed;
 }
 
-table caption {
+.post-list table caption {
     font-size: 1.5em;
     margin: .5em 0 .75em;
 }
 
-table tr {
+.post-list table tr {
     background-color: #f8f8f8;
     border: 1px solid #ddd;
     padding: .35em;
 }
 
-table th,
-table td {
+.post-list table th,
+.post-list table td {
     padding: .625em;
     text-align: left;
     word-wrap: break-word;
 }
 
-table th {
+.post-list table th {
     font-size: .85em;
     letter-spacing: .1em;
     text-transform: uppercase;
 }
 
 @media screen and (max-width: 600px) {
-    table {
+    .rating-description {
+        /* vertical-align: middle; */
+        display: block;
+        padding: 5px;
+        width: 100%;
+    }
+    
+    .rating {
+        display: block;
+        padding: 5px;
+        width: 20%;
+        text-align: center;
+    }
+
+    .post-list table {
         border: 0;
     }
 
-    table caption {
+    .post-list table caption {
         font-size: 1.3em;
     }
 
-    table thead {
+    .post-list table thead {
         border: none;
         clip: rect(0 0 0 0);
         height: 1px;
@@ -69,20 +141,20 @@ table th {
         width: 1px;
     }
 
-    table tr {
+    .post-list table tr {
         border-bottom: 3px solid #ddd;
         display: block;
         margin-bottom: .625em;
     }
 
-    table td {
+    .post-list table td {
         border-bottom: 1px solid #ddd;
         display: block;
         font-size: .8em;
         text-align: right;
     }
 
-    table td::before {
+    .post-list table td::before {
         /*
       * aria-label has no advantage, it won't be read inside a table
       content: attr(aria-label);
@@ -93,7 +165,7 @@ table th {
         text-transform: uppercase;
     }
 
-    table td:last-child {
+    .post-list table td:last-child {
         border-bottom: 0;
     }
 }
