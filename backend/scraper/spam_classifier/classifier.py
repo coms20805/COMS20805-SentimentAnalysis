@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.svm import SVC
+from itertools import chain
 
 TRAIN_SIZE = 4400
 MAXIMUM_SENTIMENT_SCORE = 0.2
@@ -47,22 +48,21 @@ def train():
     print("saved vectorizer")
 
 
-# a conservative spam classifier
-def is_spam(post, key):
+def is_spam(post, key, verbose=False):
     model = _load_model()
     vectorizer = _load_vectorizer()
     content_vec = vectorizer.transform([post[key]])
     result = model.predict(content_vec)[0]
-    predict_proba = max(model.predict_proba(content_vec))
-    post_sentiment = post["score"]
-    print(result)
-    print(predict_proba)
-    return result == "spam" and post_sentiment < MAXIMUM_SENTIMENT_SCORE
+    probs = model.predict_proba(content_vec).tolist()
+    predict_proba = max(chain(*probs))
+    if verbose:
+        print("LOG: " + post[key] + " is classified as " + result.upper() + " with prob =  " + str(predict_proba))
+    return result == "spam"
 
 
 def main():
     train()
-    is_spam({"content": "udemy coupon for only 3 dollars", "score": 0}, "content")
+    is_spam({"content": "udemy coupon for only 3 dollars", "score": 0}, "content", verbose=True)
 
 
 if __name__ == '__main__':
