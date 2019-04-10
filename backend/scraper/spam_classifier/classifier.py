@@ -13,15 +13,22 @@ CLASSIFIER_FILENAME = "classifier.pkl"
 
 
 def _load_model():
-    with open(CLASSIFIER_FILENAME, 'rb') as fid:
-        model = pickle.load(fid)
-        return model
+    try:
+        with open(CLASSIFIER_FILENAME, 'rb') as fid:
+            model = pickle.load(fid)
+            return model
+    except FileNotFoundError:
+        return Exception("You haven't trained the model. Call train() on the classifier")
 
 
 def _load_vectorizer():
-    with open(VECTORIZER_FILENAME, 'rb') as fid:
-        model = pickle.load(fid)
-        return model
+    try:
+        with open(VECTORIZER_FILENAME, 'rb') as fid:
+            model = pickle.load(fid)
+            return model
+    except FileNotFoundError:
+        raise Exception(
+            "You haven't saved the vectorized. Simply call train() on the classifier - it will save the model as well as the vectorizer")
 
 
 def _save_model(spam_model):
@@ -43,9 +50,7 @@ def train():
     vectorize_text = vectorizer.transform(train_data.v2)
     classifier.fit(vectorize_text, train_data.v1)
     _save_model(classifier)
-    print("saved classifier")
     _save_vectroizer(vectorizer)
-    print("saved vectorizer")
 
 
 def is_spam(post, key, verbose=False):
@@ -56,14 +61,14 @@ def is_spam(post, key, verbose=False):
     probs = model.predict_proba(content_vec).tolist()
     predict_proba = max(chain(*probs))
     if verbose:
-        print("LOG: " + post[key] + " is classified as " + result.upper() + " with prob =  " + str(predict_proba))
+        print("LOG: " + post[key] + " is classified as <" + result.upper() + "> with prob =  " + str(predict_proba))
     return result == "spam"
 
 
 def main():
-    train()
     is_spam({"content": "udemy coupon for only 3 dollars", "score": 0}, "content", verbose=True)
 
 
 if __name__ == '__main__':
     main()
+`
