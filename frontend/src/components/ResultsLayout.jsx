@@ -13,11 +13,11 @@ import {PropagateLoader} from "react-spinners";
 class ResultsLayout extends Component {
 
     state = {
-        isLoading: true,
+        isLoading: false,
         showPlot: false,
         query: "",
         rating: undefined,
-        posts: [],
+        posts: undefined,
         error: false,
         errorCode: undefined
     };
@@ -33,6 +33,7 @@ class ResultsLayout extends Component {
     }
 
     async loadPosts(query) {
+        this.setState({isLoading: true});
         SearchService.getPosts(query)
             .then(data => {
                 this.setState({isLoading: false, query: query, rating: data.rating, posts: data.posts, showPlot: false});
@@ -63,38 +64,44 @@ class ResultsLayout extends Component {
         const plot = this.state.showPlot ? <div className="plot-container"><button type="button" className="btn btn-secondary" onClick={this.handleTogglePlot.bind(this)}>Hide plot</button><PlotLayout query={this.state.query} /></div>
             :
             <div className="plot-container"><button type="button" className="btn btn-primary" onClick={this.handleTogglePlot.bind(this)}>Show plot</button></div>;
-        const results = <div id="results">
-                            {this.state.isLoading ?
-                                <div>
-                                    <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
-                                    <div className="loader">
-                                        <PropagateLoader
-                                            color={"rgb(8, 104, 194)"}
-                                            margin="10px"
-                                        />
-                                    </div>
-                                </div>
-                                :
-                                [this.state.posts && this.state.posts.length === 0 ?
-                                    <div>
-                                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
-                                        <p>No results</p>
-                                    </div>
-                                    :
-                                    <div>
-                                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
-                                        {plot}
-                                        <RatingBox rating={this.state.rating} />
-                                        <PostList posts={this.state.posts} />
-                                    </div>
-                                ]
-                            }
-                        </div>;
+        var results;
+        
+        if (this.state.isLoading) {
+            results = <div>
+                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                        <div className="loader">
+                            <PropagateLoader
+                                color={"rgb(8, 104, 194)"}
+                                margin="10px"
+                            />
+                        </div>
+                    </div>;
+        }
+        else if (!this.state.posts) {
+            results = <div>
+                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                    </div>;
+        }
+        else if (this.state.posts.length === 0) {
+            results = <div>
+                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                        <p>No results</p>
+                    </div>;
+        }
+        else {
+            results = <div>
+                        <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                        {plot}
+                        <RatingBox rating={this.state.rating} />
+                        <PostList posts={this.state.posts} />
+                    </div>;
+        }
+        
         return(
             <div className="grid-container">
                 <Header/>
                 <div className="main">
-                    {this.state.error ? <Error code={this.state.errorCode} /> : results}
+                    {this.state.error ? <Error code={this.state.errorCode} /> : <div id="results">{results}</div>}
                 </div>
             </div>
         );
