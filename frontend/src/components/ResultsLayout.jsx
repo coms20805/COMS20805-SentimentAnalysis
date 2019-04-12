@@ -79,7 +79,7 @@ class ResultsLayout extends Component {
                     </div>;
         }
         else if (!this.state.posts) {
-            results = <div>
+            results = <div className="vertical-center">
                         <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
                     </div>;
         }
