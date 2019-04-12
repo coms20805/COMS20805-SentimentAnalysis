@@ -10,11 +10,15 @@ class SearchBar extends Component {
     };
 
     componentDidMount() {
-        this.setState({ value: this.props.value});
+        this.setState({ value: this.props.value });
     }
 
     handleChange(e) {
         this.setState({ value: e.target.value });
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({value: props.value});
     }
 
     render() {
