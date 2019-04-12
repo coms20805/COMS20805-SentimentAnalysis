@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../styles/header.css";
 
-class Header extends Component {
+export default class Header extends Component {
     render() {
         return(
             <div className="header">
@@ -10,4 +10,3 @@ class Header extends Component {
         );
     }
 }
-export default Header;

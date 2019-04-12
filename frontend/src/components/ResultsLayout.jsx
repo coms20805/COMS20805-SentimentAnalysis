@@ -7,6 +7,7 @@ import PostList from "./Post/PostList";
 import {withRouter} from "react-router-dom";
 import PlotLayout from "./PlotLayout";
 import Header from "./Header";
+import Footer from "./Footer";
 import Error from "./Error";
 import {PropagateLoader} from "react-spinners";
 
@@ -104,6 +105,7 @@ class ResultsLayout extends Component {
                 <div className="main">
                     {this.state.error ? <Error code={this.state.errorCode} /> : <div id="results">{results}</div>}
                 </div>
+                <Footer/>
             </div>
         );
     }

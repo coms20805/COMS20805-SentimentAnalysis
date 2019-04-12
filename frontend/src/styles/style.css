@@ -7,6 +7,15 @@ body {
     width: 60vw;
 }
 
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    width: 60vw;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 .loader {
     margin-left: 50%;
     margin-top: 10px;
@@ -15,11 +24,12 @@ body {
 
 .plot-container {
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .plot-container button {
     margin: 0 auto;
-    width: 100%;
+    width: 100px;
 }
 
 .rating-box {
@@ -102,6 +112,10 @@ body {
 @media screen and (max-width: 600px) {
     .main {
         margin: auto;
+        width: 80vw;
+    }
+
+    .vertical-center {
         width: 80vw;
     }
 
