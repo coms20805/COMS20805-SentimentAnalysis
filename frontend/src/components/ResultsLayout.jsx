@@ -34,6 +34,7 @@ class ResultsLayout extends Component {
 
     async loadPosts(query) {
         this.setState({isLoading: true, query: query});
+        document.title = "Tech Sentiment – " + query;
         SearchService.getPosts(query)
             .then(data => {
                 this.setState({isLoading: false, rating: data.rating, posts: data.posts, showPlot: false});
