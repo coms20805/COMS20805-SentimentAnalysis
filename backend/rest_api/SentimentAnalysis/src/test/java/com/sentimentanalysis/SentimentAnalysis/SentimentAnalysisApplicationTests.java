@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -38,12 +40,18 @@ public class SentimentAnalysisApplicationTests {
 		this.mockMvc.perform(get("/api/search?query=a")).andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+		this.mockMvc.perform(get("/api/median?query=a")).andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 	}
 
 	@Test
 	public void returnValidListOfPosts() throws Exception{
 		this.mockMvc.perform(get("/api/search?query=java")).andDo(print())
 				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.rating", is(notNullValue())))
+				.andExpect(jsonPath("$.rating", greaterThanOrEqualTo(BigDecimal.valueOf(-1.0))))
+				.andExpect(jsonPath("$.rating", lessThanOrEqualTo(BigDecimal.valueOf(1.0))))
 				.andExpect(jsonPath("$.rating", is(notNullValue())))
 				.andExpect(jsonPath("$.posts").isArray())
 				.andExpect(jsonPath("$.posts[0].*", hasSize(4)))
@@ -53,6 +61,17 @@ public class SentimentAnalysisApplicationTests {
 				.andExpect(jsonPath("$.posts[0].score", is(notNullValue())))
 				.andExpect(jsonPath("$.posts[0].score", greaterThanOrEqualTo(-1.0)))
 				.andExpect(jsonPath("$.posts[0].score", lessThanOrEqualTo(1.0)));
+	}
+
+	@Test
+	public void returnValidListOfMedians() throws Exception{
+		this.mockMvc.perform(get("/api/median?query=java")).andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.timestamps").isArray())
+				.andExpect(jsonPath("$.timestamps[0]", not(isEmptyOrNullString())))
+				.andExpect(jsonPath("$.medians").isArray())
+				.andExpect(jsonPath("$.medians[0]", greaterThanOrEqualTo(-1.0)))
+				.andExpect(jsonPath("$.medians[0]", lessThanOrEqualTo(1.0)));
 	}
 
 }
