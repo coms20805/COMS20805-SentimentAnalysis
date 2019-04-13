@@ -1,5 +1,11 @@
 import SearchService from "./SearchService";
 
+it("handles non-connection errors correctly", async () => {
+    await expect(fetch("http://httpstat.us/500")
+                .then(res => SearchService.handleErrors(res)))
+                    .rejects.toThrow("500");
+}, 10000);
+
 it("gets posts without error", async () => {
     const results = await SearchService.getPosts("java");
     expect(results.rating).toBeDefined();
@@ -30,4 +36,17 @@ it("gets posts that contain valid values", async () => {
     expect(firstPost.timestamp).toMatch(/^\d{4}[/-](0?[1-9]|1[012])[/-](0?[1-9]|[12][0-9]|3[01])$/);
     expect(typeof firstPost.content).toEqual('string');
     expect(firstPost.url).toMatch(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/);
+});
+
+it("gets time series without error", async () => {
+    const results = await SearchService.getTimeSeries("php");
+    expect(results.timestamps).toBeDefined();
+    expect(results.medians).toBeDefined();
+});
+
+it("gets time series with valid values", async () => {
+    const results = await SearchService.getTimeSeries("haskell");
+    expect(results.timestamps[0]).toMatch(/^\d{4}[/-](0?[1-9]|1[012])[/-](0?[1-9]|[12][0-9]|3[01])$/);
+    expect(results.medians[0]).toBeLessThanOrEqual(1);
+    expect(results.medians[0]).toBeGreaterThanOrEqual(-1);
 });
