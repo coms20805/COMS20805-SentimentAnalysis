@@ -53,7 +53,7 @@ def _load_vectorizer():
             return model
     except FileNotFoundError:
         raise Exception(
-            "You haven't saved the vectorized. Simply call train() on the classifier - it will save the model as well as the vectorizer")
+            "You haven't saved the vectorizer. Simply call train() on the classifier - it will save the model as well as the vectorizer")
 
 
 def _save_model(spam_model):
