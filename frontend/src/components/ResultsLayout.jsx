@@ -38,7 +38,9 @@ class ResultsLayout extends Component {
         document.title = "Tech Sentiment – " + query;
         SearchService.getPosts(query)
             .then(data => {
-                this.setState({isLoading: false, rating: data.rating, posts: data.posts, showPlot: false});
+                let posts = data.posts;
+                posts.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+                this.setState({isLoading: false, rating: data.rating, posts: posts, showPlot: false});
             })
             .catch(error => {
                 this.setState({error: true, errorCode: error.message, showPlot: false});
