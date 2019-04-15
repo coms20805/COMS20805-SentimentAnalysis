@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker: 
+      - image: node:8
+    working_directory: /home/ubuntu/cci-demo-react
+    steps:
+      - checkout
+      - run: cd frontend
+      - run: mkdir -p /home/ubuntu/cci-demo-react/artifacts
+      - run: npm install
+      - run: npm test
+      - store_artifacts:
+          path: /home/ubuntu/cci-demo-react/artifacts
