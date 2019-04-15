@@ -3,12 +3,11 @@ jobs:
   build:
     docker: 
       - image: node:8
-    working_directory: /home/ubuntu/cci-demo-react
+    working_directory: /home/ubuntu/COMS20805-SentimentAnalysis
     steps:
       - checkout
-      - run: cd frontend
-      - run: mkdir -p /home/ubuntu/cci-demo-react/artifacts
-      - run: npm install
-      - run: npm test
+      - run: mkdir -p /home/COMS20805-SentimentAnalysis/artifacts
+      - run: cd frontend && npm install
+      - run: cd frontend && npm test
       - store_artifacts:
-          path: /home/ubuntu/cci-demo-react/artifacts
+          path: /home/ubuntu/COMS20805-SentimentAnalysis/artifacts
