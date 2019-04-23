@@ -20,9 +20,7 @@ jobs:
     steps:
       -checkout
       - restore_cache:
-          keys:
-          - SentimentAnalysis-{{ checksum "pom.xml" }}
-          - SentimentAnalysis-
+          key: SentimentAnalysis-{{ checksum "pom.xml" }}
       - run: mvn dependency:go-offline
       - save_cache:
           paths:
