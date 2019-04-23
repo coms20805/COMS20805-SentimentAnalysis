@@ -36,10 +36,14 @@ public class SentimentAnalysisApplicationTests {
 	}
 
 	@Test
-	public void returnJSON() throws Exception {
+	public void returnSearchJSON() throws Exception {
 		this.mockMvc.perform(get("/api/search?query=a")).andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+	}
+
+	@Test
+	public void returnMediansJSON() throws Exception {
 		this.mockMvc.perform(get("/api/median?query=a")).andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
@@ -50,8 +54,8 @@ public class SentimentAnalysisApplicationTests {
 		this.mockMvc.perform(get("/api/search?query=java")).andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.rating", is(notNullValue())))
-				.andExpect(jsonPath("$.rating", greaterThanOrEqualTo(BigDecimal.valueOf(-1.0))))
-				.andExpect(jsonPath("$.rating", lessThanOrEqualTo(BigDecimal.valueOf(1.0))))
+				.andExpect(jsonPath("$.rating", greaterThanOrEqualTo(-1.0)))
+				.andExpect(jsonPath("$.rating", lessThanOrEqualTo(1.0)))
 				.andExpect(jsonPath("$.rating", is(notNullValue())))
 				.andExpect(jsonPath("$.posts").isArray())
 				.andExpect(jsonPath("$.posts[0].*", hasSize(4)))

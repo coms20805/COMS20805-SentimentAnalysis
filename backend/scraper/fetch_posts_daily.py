@@ -4,7 +4,7 @@ import os
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 TWITTER_TOPICS_PATH = PATH + "/twitter_dataset.txt"
-POST_COUNT = 1 #Number of posts from each topic to scrape
+POST_COUNT = 10 #Number of posts from each topic to scrape
 ENDPOINT = "https://es-app.herokuapp.com/insert"
 
 def get_topics():
