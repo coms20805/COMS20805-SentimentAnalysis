@@ -33,3 +33,5 @@ workflows:
     jobs:
       - build
       - test_rest_api
+          requires:
+            - build
