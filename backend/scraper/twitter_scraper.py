@@ -6,6 +6,8 @@ Example usage:
 scraper = TwitterScraper()
 posts = scraper.fetch_posts('Node.js', 50)
 """
+from __future__ import unicode_literals
+
 import os
 import re
 
