@@ -6,11 +6,13 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.svm import SVC
 from itertools import chain
 from enum import Enum
+import os
 
 TRAIN_SIZE = 4400
 MAXIMUM_SENTIMENT_SCORE = 0.2
-VECTORIZER_FILENAME = "vectorizer.pkl"
-CLASSIFIER_FILENAME = "classifier.pkl"
+
+VECTORIZER_FILENAME = os.path.join(os.path.dirname(__file__), 'vectorizer.pkl')
+CLASSIFIER_FILENAME = os.path.join(os.path.dirname(__file__), 'classifier.pkl')
 
 
 class Result(Enum):
