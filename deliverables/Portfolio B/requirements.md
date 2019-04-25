@@ -1,4 +1,4 @@
-# Requirements
+﻿# Requirements
 
 ## System Stakeholders
 
@@ -29,32 +29,35 @@
 ## Use case goals
 We have identified two examples of use case goals.
 
-### "User – submit query and receive result" flow
-1. Submit query
-1. Run query through the Elasticsearch engine
-1. Match the query to posts in database
-1. Display the result to the user in the right format
+### Sequence of Steps
+1. User loads techsentiment.com
+1. User enters a software related query
+1. User searches for query
+1. User is presented with an option to hide or show a graph containing sentiment scores of each post.
+1. User is presented with a results box containing sentiment scores of certain posts related to the query followed by its url and time stamp.
+2. User interprets results and draws a conclusion about the sentiment towards query.
+
+
+![Diagram for goal "User – submit query and receive result"](includes/use-case3.png)
+
+### Alternative Pathways
+
+#### User types in a malformed query
+Steps 1 to 3 are completed. However, the query entered is malformed. The query is run through the Elasticsearch engine. If there are no matches, fuzzy matching is performed. If posts are found. Steps 4 to 6 will resume. 
+
+
+### Exceptional Pathways
+
+#### User types in an unrelated query regarding Open-source software
+Steps 1 to 3 are completed. However, the query is not related to Open-source software. The query is run through the Elasticsearch engine. If there are no matches, fuzzy matching is performed. If no posts are found, An error message is displayed suggesting the user  to enter a different query.
 
 ### "ML module: scrape for posts and populate the database" flow
 1. Run instances of the different scrapers
 1. Determine the sentiment values of the scraped posts
 1. Push resulting objects to the Elasticsearch database
 
-![Diagram for goal "User – submit query and receive result"](includes/use-case3.png)
-
-### Alternative flow for "User: submit query and receive result"
-1. Submit query
-1. Run query through the Elasticsearch engine
-1. No matches, perform fuzzy matching
-1. Posts found, display the result to the user in the right format
-
-### Exceptional flow for "User: submit query and receive result"
-1. Submit query
-1. Run query through the Elasticsearch engine
-1. No matches, perform fuzzy matching
-1. No matches
-1. Display an error to the user
 ---
+
 
 ## Functional Requirements
 ### Usage
