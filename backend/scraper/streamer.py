@@ -33,7 +33,7 @@ def run(production, limit, verbose):
     twitter = TwitterScraper()
     for topic in topics:
         for post in twitter.fetch_posts(topic, limit):
-            if clf.classify(post.to_dict(), key="content", verbose=True) == Result.SPAM:
+            if clf.classify(post.to_dict(), key="content", verbose=True) == Result.SPAM or post.score == 0:
                 continue
 
             if production:

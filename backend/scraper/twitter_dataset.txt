@@ -7,30 +7,11 @@ kotlin programming
 swift programming
 ruby programming
 golang programming
-tensorflow programming language
-rust language
-android
-ocaml programming language
-android
-c
-c++
-golang
-haskell
-java
-javascript
-kotlin
-lisp
-matlab
-ocaml
-pascal
-perl
-php
-python
-react
-ruby
-rust language
-scala
-scratch
-sql
-swift
 tensorflow
+rust language
+android
+C programming
+golang programming
+haskell functional programming
+Machine Learning
+
