@@ -31,7 +31,7 @@ We have identified two examples of use case goals.
 
 ### Sequence of Steps
 1. User loads techsentiment.com
-1. User enters a software related query
+1. User enters a query
 1. User searches for query
 1. User is presented with an option to hide or show a graph containing sentiment scores of each post.
 1. User is presented with a results box containing sentiment scores of certain posts related to the query followed by its url and time stamp.
@@ -57,39 +57,50 @@ Steps 1 to 3 are completed. However, the query is not related to Open-source sof
 1. Push resulting objects to the Elasticsearch database
 
 ---
-
+# Atomic Requirements
 
 ## Functional Requirements
+
 ### Usage
-* The software will be able to extract insights from social media posts related to technology.
-* The software will list related posts for every successful query.
-* The software must display an overall rating of a query given by the user.
-* The software will render a plot of historical sentiment values for each successful query.
-* When a malformed query is provided, *fuzzy matching* will take place. The algorithm will find the posts with content that closely matches the original query.
+1. The software will be able to extract the latest insights from social media posts related to technology.
+1. The software will list related posts for every successful query.
+1. The software will display an overall rating of a query given by the user.
+1. The software will render a plot of historical sentiment values for each successful query.
+1. The user will be able to hover over the graph and find sentiment scores for each point.
+1. When a malformed query is provided, *fuzzy matching* will take place. The algorithm will find the posts with content that closely matches the original query.
 
 ### System
-* Our RESTful API shall be *idempotent*. Our algorithm can be applied multiple times without affecting the result beyond initial application.
-* The database will be updated at least once a week.
-* The development team will be responsible for maintaining and updating the system, with new posts.
+1. Our RESTful API shall be *idempotent*. Our algorithm can be applied multiple times without affecting the result beyond initial application.
+1. The database will be updated at least once a week.
+1. The development team will be responsible for maintaining and updating the system, with new posts.
+
 
 ### User Interface
-* The user should always be able to return to the previous screen.
+1. The user should always be able to return to the previous screen.
+1. An error message will be displayed if there are no posts related to the submitted query.
+ 
 
 ## Non-functional Requirements
 ### Performance
-* The software shall be able to handle up to 36 requests per second
-  * Rough estimate of requests per second (at peak times)
+1. The software must be able to handle up to 36 requests per second
+* Rough estimate of requests per second (at peak times)
     * 4.7 million developers in Europe
     * Each making 20 requests
     * Let us assume they all access our website in the same 2 hour period
     * [(4.7M * 20 requests) / 365 days] / 2hr / 60min / 60sec = 36 requests per second
 
+2. The system must display the results within 10 seconds
+3. The software must load the graph in less than 5 seconds
 
+###  Accessibility
+1. The software must be usable by a non-technical user
 ### Legislative
-* The software shall be released under the MIT licence.
-
-### Usability
-* We will be aiming to make our software as usable as possible by testing on its:
+1. The software shall be released under the MIT licence.
+### Ethical
+* To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
+ ---
+## Usefulness
+ We will be aiming to make our software as usable as possible by testing on its:
   * **Success rate**: The accuracy of the algorithm will be tested using our questionnaire.
   * **Efficiency**: This will be tested through the unit and system integration tests, to ensure our product delivers the result as fast as possible.
   * **Memorability**: When a user returns to the application after a period of not using it, the user shall remember enough to use it effectively the next time.
@@ -105,5 +116,4 @@ Steps 1 to 3 are completed. However, the query is not related to Open-source sof
 
 ![Results page](includes/mockup-results.png)
 
-### Ethical
-* To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
+
