@@ -74,7 +74,7 @@ export default class SearchBar extends Component {
 
         return (
             <div className="search-bar">
-                <form onSubmit={this.props.handleSubmit}>
+                <form onSubmit={this.props.handleSubmit} autocomplete="off">
                     <FormGroup>
                         <div className="autocomplete">
                             <InputGroup>
