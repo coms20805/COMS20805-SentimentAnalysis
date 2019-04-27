@@ -4,21 +4,21 @@
 
 ### Elasticsearch API
 
-We designed, implemented and tested a custom API that provided a simpler interface to the larger [elasticsearch library](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html). Concretely, it aimed to abstract away the complexities of following methods:
+We designed, implemented, and tested a custom API that provided a simpler interface to the larger [elasticsearch library](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html). Concretely, it aimed to abstract away the complexities of following methods:
 
 * Post Insertion
 * Post Deletion 
 * Post Searching strategies 
 * Index Creation
 
-We tested these methods aginst a suite of unit-tests, making sure that we tested edge-cases such as duplicate post insertions and deletion of non-existent posts. We also used and tested fuzzy matching to so that we could match againsts posts even if the seach query had a typo in it. 
+We tested these methods aginst a suite of unit-tests, making sure that we tested edge-cases such as inserting duplicate posts and deleting non-existent posts. We also used and tested fuzzy matching so that we could match against posts even if the seach query had a typo in it. 
 
 
 ### Python modules
 
 ### Scraper
 
-To populate our elasticsearch instance, we wrote a cron-job that would go through a list of selected topics, fetch posts post up to a certain limit for each topic, then insert these posts into our instance. 
+To populate our elasticsearch instance, we wrote a cron-job that would go through a list of selected topics, fetch posts up to a certain limit for each topic, then insert these posts into our instance. 
 
 We used Twitter as our source of data, leveraging its API to collect tweets (which, in later iterations, would be run through a spam classifier).
 
