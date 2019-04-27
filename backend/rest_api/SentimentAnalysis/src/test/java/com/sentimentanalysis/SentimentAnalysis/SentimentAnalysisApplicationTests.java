@@ -9,8 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.math.BigDecimal;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -54,8 +52,8 @@ public class SentimentAnalysisApplicationTests {
 		this.mockMvc.perform(get("/api/search?query=java")).andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.rating", is(notNullValue())))
-				.andExpect(jsonPath("$.rating", greaterThanOrEqualTo(BigDecimal.valueOf(-1.0))))
-				.andExpect(jsonPath("$.rating", lessThanOrEqualTo(BigDecimal.valueOf(1.0))))
+				.andExpect(jsonPath("$.rating", greaterThanOrEqualTo(Double.valueOf(-1.0))))
+				.andExpect(jsonPath("$.rating", lessThanOrEqualTo(Double.valueOf(1.0))))
 				.andExpect(jsonPath("$.rating", is(notNullValue())))
 				.andExpect(jsonPath("$.posts").isArray())
 				.andExpect(jsonPath("$.posts[0].*", hasSize(4)))
