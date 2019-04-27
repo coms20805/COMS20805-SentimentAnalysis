@@ -51,11 +51,10 @@ We observed a noticeable improvement in the quality of posts, although it wasn't
 
 It's worth mentioning that we were able to iterate over different classification heuristics because of our design decision to make it easier to create and delete elasticsearch indices on the fly. This meant that if our spam classifer did not work well at all, we could easily delete the associated index and create a new one. 
 
-
 ## Front end
-We also used unit tests to ensure our front end React.js components behave as intended. For instance, checking that clicking the 'search' button sends a query or checking that the results of a query are shown to the user in the correct format. In addition, we have tested to check if the posts contain valid values and the time series loads without error.
+Our testing approach in our React.js front end application was mainly integration tests as there was not much logic delegated to the front end itself. We were mainly interested in whether we were correctly receiving data and that it was in the right format. We made sure that score values were valid and within the expected boundaries and that URLs and timestamps were in the correct format witht the help of regular expressions. This was repeated for all of our service functions that interact with the back end REST API.
 
-
+The testing framework we used was Jest.js.
 
 ## Continuous Integration
 As part of our development process we used continuous integration via Circle CI to prevent integration issues. Our integration tests are run sequentially to verify that all the components of our application interact with each other as expected. We used a bottom-up approach, where we started with the lowest level module of our application and added components into our integration tests one-by-one until all components have been integrated. This means that if an integration test fails it will be easy to see which component has caused the failure.
