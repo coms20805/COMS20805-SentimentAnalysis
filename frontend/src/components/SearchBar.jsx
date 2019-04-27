@@ -4,17 +4,29 @@ import {Button, FormControl, FormGroup, Glyphicon, InputGroup} from "react-boots
 
 export default class SearchBar extends Component {
     availableQueries = [
-        "Java",
-        "Python",
-        "JavaScript",
-        "JSON",
-        "MATLAB",
-        "JQuery",
-        "CSharp",
-        "Opal",
-        "Ruby",
-        "SQL",
-        "Swift",
+        "android",
+        "c",
+        "c++",
+        "golang",
+        "haskell",
+        "java",
+        "javascript",
+        "kotlin",
+        "lisp",
+        "matlab",
+        "ocaml",
+        "pascal",
+        "perl",
+        "php",
+        "python",
+        "react",
+        "ruby",
+        "rust language",
+        "scala",
+        "scratch",
+        "sql",
+        "swift",
+        "tensorflow"
       ];
 
     state = {
