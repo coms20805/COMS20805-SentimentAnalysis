@@ -19,7 +19,8 @@ export default class SearchBar extends Component {
 
     state = {
         value: "",
-        suggestions: []
+        suggestions: [],
+        inputActive: false
     };
     
     componentDidMount() {
@@ -37,11 +38,23 @@ export default class SearchBar extends Component {
         this.setState({suggestions, value});
     }
 
+    handleFocus() {
+        if (!this.state.inputActive) {
+            this.setState({inputActive: true});
+        }
+    }
+
+    handleBlur() {
+        if (this.state.inputActive) {
+            this.setState({suggestions: [], inputActive: false});
+        }
+    }
+
     componentWillReceiveProps(props) {
         this.setState({value: props.value});
     }
 
-    suggestionSelected(value){
+    suggestionSelected(value) {
         this.setState({value, suggestions: []});
     }
 
@@ -51,9 +64,9 @@ export default class SearchBar extends Component {
           return null;
         }
         return (
-          <ul>
-              {suggestions.map((item) => <li onClick={() => this.suggestionSelected(item)}>{item}</li>)}
-          </ul>
+          <div className="autocomplete-items">
+              {suggestions.map((item, key) => <div key={key} onMouseDown={() => this.suggestionSelected(item)}>{item}</div>)}
+          </div>
         );
     }
 
@@ -63,22 +76,26 @@ export default class SearchBar extends Component {
             <div className="search-bar">
                 <form onSubmit={this.props.handleSubmit}>
                     <FormGroup>
-                        <InputGroup>
-                            <FormControl
-                                type="text"
-                                name="query"
-                                value={this.state.value}
-                                default=""
-                                placeholder="Search"
-                                onChange={this.handleChange.bind(this)}
-                            />
-                            <InputGroup.Button>
-                                <Button type="submit">
-                                    <Glyphicon glyph="search" />
-                                </Button>
-                            </InputGroup.Button>
-                        </InputGroup>
-                        {this.renderSuggestions()}
+                        <div className="autocomplete">
+                            <InputGroup>
+                                <FormControl
+                                    type="text"
+                                    name="query"
+                                    value={this.state.value}
+                                    default=""
+                                    placeholder="Search"
+                                    onChange={this.handleChange.bind(this)}
+                                    onFocus={this.handleFocus.bind(this)}
+                                    onBlur={this.handleBlur.bind(this)}
+                                />
+                                {this.renderSuggestions()}
+                                <InputGroup.Button>
+                                    <Button type="submit">
+                                        <Glyphicon glyph="search" />
+                                    </Button>
+                                </InputGroup.Button>
+                            </InputGroup>
+                        </div>
                     </FormGroup>
                 </form>
             </div>
