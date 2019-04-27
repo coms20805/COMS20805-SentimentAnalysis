@@ -25,7 +25,8 @@ We used Twitter as our source of data, leveraging its API to collect tweets (whi
 We made a conscious design choice to not allow users to dynamically update our list of topics. The reason was two-fold:
 
 * Limited Storage: We are using a [free-tier elasticsearch instance](https://bonsai.io/) that caps out a [certain capacity](https://bonsai.io/pricing). Thus, if we allowed dynamic updates, then it would be hard to predict when we would run out of space. We would have to design new protocols that would limit the number of topics that can be added, and limit how many posts we can collect per new topic. This becomes every more challenging considering the next point.
-* Spam: Our current list was deliberately chosen as we knew it would return posts that would more-or-less conform to our requirements. In our initial iteration, we did not build a spam classifier, and so allowing dynamic topic updates meant that we would have no idea whether it would introduce legitimate or spammy content. This was a tradeoff we were *not* willing to make. (Even with a general spam classifier several iterations later, *accurately* classifying a post as spam/non-spam still remains a problem difficult enough that it deters us from allowing dynamic updates)  
+
+* Spam: Our current list was deliberately chosen as we knew it would return posts that would more-or-less conform to our requirements. Given that we did not build a spam classifier initially, allowing dynamic topic updates would mean that we would have no idea whether our scraper was scraping legitimate or spammy content, until it was too late. This was a tradeoff we were *not* willing to make. (Even with a general spam classifier several iterations later, *accurately* classifying a post as spam/non-spam still remains a problem difficult enough that it deters us from allowing dynamic updates)  
 
 
 ### Server
@@ -38,7 +39,7 @@ Making it idempotent meant we need to ensure any given `GET` request would not c
 
 In terms of efficiency, we used a [Least-Recently-Used cache (LRU)](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)) to dynamically cache the results of a query and thus save computational load. An LRU was tailored to our domain since it would have a high "hit rate" on popular queries, whilst dynamically discarding posts that were not queried often enough. 
 
-We also adhered to standard HTTP protocols, returning a `201` for every successful post creation, a `200` for successful deletion and search. Misuse of the API reulted in the API throwing a `4xx`, along with a json blob indicating what the domain-specific error could be, and how to fix it. 
+We also adhered to standard HTTP protocols, returning a `201` for every successful post creation, a `200` for successful deletion and search. Misuse of the API results in a `4xx`, along with a json blob indicating what the domain-specific error could be, and how to fix it. 
 
 We tested all of these factors against a local instance of elastic search, populated with a testing dataset. Idempotency was tested by making sure search results stayed the same between multiple `GET` requests, the LRU cache was tested on the expected number of hits against the dataset, and the HTTP protocols were tested with every request invocation.  
 
