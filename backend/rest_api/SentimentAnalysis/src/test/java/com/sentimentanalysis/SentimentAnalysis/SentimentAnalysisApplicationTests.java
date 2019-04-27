@@ -52,8 +52,7 @@ public class SentimentAnalysisApplicationTests {
 		this.mockMvc.perform(get("/api/search?query=java")).andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.rating", is(notNullValue())))
-				.andExpect(jsonPath("$.rating", greaterThanOrEqualTo(Double.valueOf(-1.0))))
-				.andExpect(jsonPath("$.rating", lessThanOrEqualTo(Double.valueOf(1.0))))
+				.andExpect(jsonPath("$.rating").isNumber())
 				.andExpect(jsonPath("$.rating", is(notNullValue())))
 				.andExpect(jsonPath("$.posts").isArray())
 				.andExpect(jsonPath("$.posts[0].*", hasSize(4)))
@@ -61,8 +60,7 @@ public class SentimentAnalysisApplicationTests {
 				.andExpect(jsonPath("$.posts[0].timestamp", not(isEmptyOrNullString())))
 				.andExpect(jsonPath("$.posts[0].url", not(isEmptyOrNullString())))
 				.andExpect(jsonPath("$.posts[0].score", is(notNullValue())))
-				.andExpect(jsonPath("$.posts[0].score", greaterThanOrEqualTo(Double.valueOf(-1.0))))
-				.andExpect(jsonPath("$.posts[0].score", lessThanOrEqualTo(Double.valueOf(1.0))));
+				.andExpect(jsonPath("$.posts[0].score").isNumber());
 	}
 
 	@Test
@@ -72,8 +70,8 @@ public class SentimentAnalysisApplicationTests {
 				.andExpect(jsonPath("$.timestamps").isArray())
 				.andExpect(jsonPath("$.timestamps[0]", not(isEmptyOrNullString())))
 				.andExpect(jsonPath("$.medians").isArray())
-				.andExpect(jsonPath("$.medians[0]", greaterThanOrEqualTo(Double.valueOf(-1.0))))
-				.andExpect(jsonPath("$.medians[0]", lessThanOrEqualTo(Double.valueOf(1.0))));
+				.andExpect(jsonPath("$.medians[0]", not(isEmptyOrNullString())))
+				.andExpect(jsonPath("$.medians[0]").isNumber());
 	}
 
 }
