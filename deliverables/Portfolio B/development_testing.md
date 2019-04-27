@@ -24,7 +24,7 @@ We used Twitter as our source of data, leveraging its API to collect tweets (whi
 
 We made a conscious design choice to not allow users to dynamically update our list of topics. The reason was two-fold:
 
-* Limited Storage: We are using a [free-tier elasticsearch instance](https://bonsai.io/) that caps out a [certain capacity](https://bonsai.io/pricing). Thus, if we allowed dynamic updates then it would be hard to predict when we would run out of space. We would have to design a new protocols that would limit the number of topics a given user can add to the list, and limit how many we can collect per new additional topic. This becomes every more challenging considering the next point.
+* Limited Storage: We are using a [free-tier elasticsearch instance](https://bonsai.io/) that caps out a [certain capacity](https://bonsai.io/pricing). Thus, if we allowed dynamic updates then it would be hard to predict when we would run out of space. We would have to design new protocols that would limit the number of topics a given user can add to the list, and limit how many we can collect per new additional topic. This becomes every more challenging considering the next point.
 * Spam: Our current list was deliberately chosen as we knew it would return posts that would more-or-less conform to our requirements. In our initial iteration, we did not build a spam classifier, and so allowing dynamic topic updates meant that we would have no idea whether it would introduce legitimate or spammy content. This was a not a tradeoff we were willing to make. (Even with a general spam classifier several iterations later, *accurately* classifying a post as spam/non-spam still remains a problem difficult enough that it deters us from allowing dynamic updates)  
 
 
