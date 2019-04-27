@@ -43,13 +43,13 @@ We also adhered to standard HTTP protocols, returning a `201` for every successf
 We tested all of these factors against a local instance of elastic search, populated with a testing dataset. Idempotency was tested by make sure search results stay the same between multiple `GET` requests, the LRU cache was tested on the expected number of hits against the dataset, and the HTTP protocols were tested with every request invocation.  
 
 ### Spam Classifier 
-An issue we faced in our initial iteration was that our posts were not quite representative of our task. Specifically, we found that a large chunk of our dataset filled with spammy content, such as "free courses" and general tech advertisement.  This was not ideal since our goal was to extract sentiment from *opinionated posts* about technology.
+An issue we faced in our initial iteration was that our posts were not quite representative of our task. Specifically, we found that a large chunk of our dataset was filled with spammy content, such as "free courses" and general tech advertisement.  This was not ideal since our goal was to extract sentiment from *opinionated posts* about technology.
 
 To mitigate this, we built a spam-classifier, leveraging out-of-the-box libraries such as [sklearn](https://scikit-learn.org/), and training it on a general-purpose dataset. We tested the classifier against spammy content we were likely to encounter and iteratively tweaked its parameters for best results. 
 
 We observed a noticeable improvement in the quality of posts, although it wasn't perfect. This is mostly likely because training dataset was more general-purpose than targeted to our domain. 
 
-It's worth mentioning that we were able to iterate over different classification heuristics because of our design decision to make it easier to create and delete elastic elasticsearch indices on the fly. This meant that if our spam classifer did not work well at all, we could easily delete the associated index and create a new one. 
+It's worth mentioning that we were able to iterate over different classification heuristics because of our design decision to make it easier to create and delete elasticsearch indices on the fly. This meant that if our spam classifer did not work well at all, we could easily delete the associated index and create a new one. 
 
 
 ## Front end
