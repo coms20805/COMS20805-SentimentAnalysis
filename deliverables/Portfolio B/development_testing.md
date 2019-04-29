@@ -44,7 +44,6 @@ Making it idempotent meant we need to ensure any given `GET` request would not c
 In terms of efficiency, we used a [Least-Recently-Used cache (LRU)](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)) to dynamically cache the results of a query and thus save computational load. An LRU was tailored to our domain since it would have a high "hit rate" on popular queries, whilst dynamically discarding posts that were not queried often enough. 
 
 We also adhered to standard HTTP protocols, returning a `201` for every successful post creation, a `200` for successful deletion and search. Misuse of the API results in a `4xx`, along with a json blob indicating what the domain-specific error could be, and how to fix it. 
-<<<<<<< HEAD
 
 We tested all of these factors against a local instance of elastic search, populated with a testing dataset. Idempotency was tested by making sure search results stayed the same between multiple `GET` requests, the LRU cache was tested on the expected number of hits against the dataset, and the HTTP protocols were tested with every request invocation.  
 
