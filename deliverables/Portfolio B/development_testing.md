@@ -59,7 +59,6 @@ It's worth mentioning that we were able to iterate over different classification
 
 ## Front end
 Our testing approach in our React.js front end application was mainly integration tests as there was not much logic delegated to the front end itself. We were mainly interested in whether we were correctly receiving data and that it was in the right format. We made sure that score values were valid and within the expected boundaries and that URLs and timestamps were in the correct format witht the help of regular expressions. This was repeated for all of our service functions that interact with the back end REST API.
-=======
 
 We tested all of these factors against a local instance of elastic search, populated with a testing dataset. Idempotency was tested by making sure search results stayed the same between multiple `GET` requests, the LRU cache was tested on the expected number of hits against the dataset, and the HTTP protocols were tested with every request invocation.  
 
@@ -76,7 +75,6 @@ It's worth mentioning that we were able to iterate over different classification
 Our testing approach in our React.js front end application was mainly integration tests as there was not much logic delegated to the front end itself. We were mainly interested in whether we were correctly receiving data and that it was in the right format. We made sure that score values were valid and within the expected boundaries and that URLs and timestamps were in the correct format witht the help of regular expressions. This was repeated for all of our service functions that interact with the back end REST API.
 
 The testing framework we used was Jest.js.
->>>>>>> d52cfbab38300c31f99edb0ea3aca9e131f0ce7c
 
 ## Continuous Integration
 As part of our development process we used continuous integration via Circle CI to prevent integration issues. Our integration tests are run sequentially to verify that all the components of our application interact with each other as expected. We used a bottom-up approach, where we started with the lowest level module of our application and added components into our integration tests one-by-one until all components have been integrated. This means that if an integration test fails it will be easy to see which component has caused the failure.
@@ -85,4 +83,4 @@ In addition, after every commit is made to the repository all the integration te
 
 
 ## Testing frameworks
-The unit testing frameworks we used were *JUnit* and *Hamcrest* for Java, *Jest.js* for React.js and *unittest* for Python.
+The unit testing frameworks we used were *JUnit* and *Hamcrest* for Java and *unittest* for Python.
