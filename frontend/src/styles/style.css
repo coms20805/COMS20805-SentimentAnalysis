@@ -5,6 +5,7 @@ body {
 .main {
     margin: auto;
     width: 60vw;
+    padding-bottom: 3.5rem;
 }
 
 .vertical-center {
@@ -125,7 +126,7 @@ body {
         padding: 5px;
         width: 100%;
     }
-    
+
     .rating {
         display: block;
         padding: 5px;
@@ -179,4 +180,16 @@ body {
     .post-list table td:last-child {
         border-bottom: 0;
     }
+}
+
+.badge-success {
+    background-color: #468847;
+}
+
+.badge-danger {
+    background-color: #b94a48;
+}
+
+.badge-light {
+    background-color: #ddd;
 }

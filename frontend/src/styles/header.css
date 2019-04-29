@@ -7,3 +7,13 @@
     width: 100%;
     display: inline-block;
 }
+
+h1 a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+h1 a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}

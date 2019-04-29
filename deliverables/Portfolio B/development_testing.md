@@ -44,6 +44,7 @@ Making it idempotent meant we need to ensure any given `GET` request would not c
 In terms of efficiency, we used a [Least-Recently-Used cache (LRU)](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)) to dynamically cache the results of a query and thus save computational load. An LRU was tailored to our domain since it would have a high "hit rate" on popular queries, whilst dynamically discarding posts that were not queried often enough. 
 
 We also adhered to standard HTTP protocols, returning a `201` for every successful post creation, a `200` for successful deletion and search. Misuse of the API results in a `4xx`, along with a json blob indicating what the domain-specific error could be, and how to fix it. 
+<<<<<<< HEAD
 
 We tested all of these factors against a local instance of elastic search, populated with a testing dataset. Idempotency was tested by making sure search results stayed the same between multiple `GET` requests, the LRU cache was tested on the expected number of hits against the dataset, and the HTTP protocols were tested with every request invocation.  
 
@@ -58,6 +59,24 @@ It's worth mentioning that we were able to iterate over different classification
 
 ## Front end
 Our testing approach in our React.js front end application was mainly integration tests as there was not much logic delegated to the front end itself. We were mainly interested in whether we were correctly receiving data and that it was in the right format. We made sure that score values were valid and within the expected boundaries and that URLs and timestamps were in the correct format witht the help of regular expressions. This was repeated for all of our service functions that interact with the back end REST API.
+=======
+
+We tested all of these factors against a local instance of elastic search, populated with a testing dataset. Idempotency was tested by making sure search results stayed the same between multiple `GET` requests, the LRU cache was tested on the expected number of hits against the dataset, and the HTTP protocols were tested with every request invocation.  
+
+### Spam Classifier 
+An issue we faced in our initial iteration was that our posts were not quite representative of our task. Specifically, we found that a large chunk of our dataset was filled with spammy content, such as "free courses" and general tech advertisement.  This was not ideal since our goal was to extract sentiment from *opinionated posts* about technology.
+
+To mitigate this, we built a spam-classifier, leveraging out-of-the-box libraries such as [sklearn](https://scikit-learn.org/), and training it on a general-purpose dataset. We tested the classifier against spammy content we were likely to encounter and iteratively tweaked its parameters for best results. 
+
+We observed a noticeable improvement in the quality of posts, although it wasn't perfect. This is mostly likely because training dataset was more general-purpose than targeted to our domain. 
+
+It's worth mentioning that we were able to iterate over different classification heuristics because of our design decision to make it easier to create and delete elasticsearch indices on the fly. This meant that if our spam classifer did not work well at all, we could easily delete the associated index and create a new one. 
+
+## Front end
+Our testing approach in our React.js front end application was mainly integration tests as there was not much logic delegated to the front end itself. We were mainly interested in whether we were correctly receiving data and that it was in the right format. We made sure that score values were valid and within the expected boundaries and that URLs and timestamps were in the correct format witht the help of regular expressions. This was repeated for all of our service functions that interact with the back end REST API.
+
+The testing framework we used was Jest.js.
+>>>>>>> d52cfbab38300c31f99edb0ea3aca9e131f0ce7c
 
 ## Continuous Integration
 As part of our development process we used continuous integration via Circle CI to prevent integration issues. Our integration tests are run sequentially to verify that all the components of our application interact with each other as expected. We used a bottom-up approach, where we started with the lowest level module of our application and added components into our integration tests one-by-one until all components have been integrated. This means that if an integration test fails it will be easy to see which component has caused the failure.
