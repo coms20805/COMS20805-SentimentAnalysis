@@ -1,4 +1,7 @@
+import re
+
 import langdetect as langdetect
+from fuzzywuzzy import fuzz
 
 from spam_classifier.classifier import Result
 from twitter_scraper import TwitterScraper
@@ -10,6 +13,21 @@ ES_ENDPOINT = "https://es-app.herokuapp.com/insert"
 from spam_classifier import PreTrainedClassifier
 
 clf = PreTrainedClassifier()
+
+
+def almost_same(s1, s2):
+    if fuzz.ratio(s1, s2) > 70:
+        return True
+    return False
+
+
+def almost_similar_to_existing_set(tweet_set, candidate):
+    for tweet in tweet_set:
+        if almost_same(tweet, candidate):
+            print("too close")
+            print(tweet + "----" + candidate)
+            return True
+    return False
 
 
 def to_dict(post):
@@ -31,11 +49,15 @@ def get_topics():
 def run(production, limit, verbose):
     topics = get_topics()
     twitter = TwitterScraper()
+    tweet_set = set()
     for topic in topics:
         for post in twitter.fetch_posts(topic, limit):
-            if clf.classify(post.to_dict(), key="content", verbose=True) == Result.SPAM or post.score == 0:
+            if clf.classify(post.to_dict(), key="content") == Result.SPAM or post.to_dict()["score"] == 0:
                 continue
-
+            raw_tweet = re.sub(r'http\S+', '', post.content).strip()
+            if almost_similar_to_existing_set(tweet_set, raw_tweet):
+                continue
+            tweet_set.add(raw_tweet)
             if production:
                 r = requests.post(ES_ENDPOINT, json={"post": post.to_dict()})  # this is the json format
                 print(r.status_code)

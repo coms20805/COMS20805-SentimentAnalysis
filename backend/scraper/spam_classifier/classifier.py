@@ -80,9 +80,12 @@ def train():
     _save_vectorizer(vectorizer)
 
 
+# quick sanity checks
 def main():
+    train()
     clf = PreTrainedClassifier()
-    res = clf.classify({"content": "udemy coupon for only 3 dollars", "score": 0}, "content", verbose=True)
+    assert (clf.classify({"content": "udemy coupon for only 3 dollars", "score": 0}, "content", verbose=True) == Result.SPAM)
+    assert (clf.classify({"content": "most popular langauages", "score": 0}, "content", verbose=True)) == Result.SPAM
 
 
 if __name__ == '__main__':

@@ -13,9 +13,33 @@ import re
 
 import pendulum
 import tweepy
+from fuzzywuzzy import fuzz
 
 from post import Post
 from scraper_interface import Scraper
+import difflib
+
+
+def common_words(s1, s2):
+    word_in_s1 = set(s1.split(" "))
+    words_in_s2 = set(s2.split(" "))
+    return word_in_s1.intersection(words_in_s2)
+
+
+def almost_same(s1, s2):
+    if fuzz.ratio(s1, s2) > 70:
+        return True
+    return False
+
+
+def almost_similar_to_existing_set(tweet_set, candidate):
+    for tweet in tweet_set:
+        if almost_same(tweet, candidate):
+            print("too close")
+            print(tweet, candidate)
+            print("---")
+            return True
+    return False
 
 
 class TwitterScraper(Scraper):
@@ -67,6 +91,7 @@ class TwitterScraper(Scraper):
     def fetch_posts(self, search_term, limit):
 
         post_set = set()
+        tweet_set = set()
 
         tweets = self.api.search(
             q=search_term + " -filter:retweets AND -filter:replies",
@@ -74,6 +99,11 @@ class TwitterScraper(Scraper):
             lang="en")
 
         for tweet in tweets:
-            post_set.add(self._unmarshal(tweet))
-
+            post = self._unmarshal(tweet)
+            tweet = post.content
+            raw_tweet = re.sub(r'http\S+', '', tweet).strip()
+            if raw_tweet in tweet_set:
+                continue
+            tweet_set.add(raw_tweet)
+            post_set.add(post)
         return post_set

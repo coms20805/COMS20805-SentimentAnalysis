@@ -5,13 +5,11 @@ react framework
 python programming
 kotlin programming
 swift programming
-ruby programming
 golang programming
 tensorflow
+assembly programming
 rust language
-android
+android programming
 C programming
-golang programming
 haskell functional programming
-Machine Learning
 
