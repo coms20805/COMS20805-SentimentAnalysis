@@ -1,44 +1,45 @@
 import React, { Component } from "react";
+import SearchService from "../api/SearchService";
 import "../styles/searchBar.css";
-import {Button, FormControl, FormGroup, Glyphicon, InputGroup} from "react-bootstrap";
+import {Button, FormControl, FormGroup, InputGroup} from "react-bootstrap";
 
 
 
-class SearchBar extends Component {
+class Compare extends Component {
     state = {
-        value: ""
+        value2: ""
     };
 
     componentDidMount() {
-        this.setState({ value: this.props.value });
+        this.setState({ value2: this.props.value2 });
     }
 
-    handleChange(e) {
-        this.setState({ value: e.target.value });
+    handleChange2(e) {
+        this.setState({ value2: e.target.value2 });
     }
 
     componentWillReceiveProps(props) {
-        this.setState({value: props.value});
+        this.setState({value2: props.value2});
     }
 
     render() {
 
         return (
-            <div className="search-bar">
+            <div className="compare">
                 <form onSubmit={this.props.handleSubmit}>
                     <FormGroup>
                         <InputGroup>
                             <FormControl
                                 type="text"
                                 name="query"
-                                value={this.state.value}
+                                value={this.state.value2}
                                 default=""
-                                placeholder="Search"
-                                onChange={this.handleChange.bind(this)}
+                                placeholder="Type a query you want to compare"
+                                onChange={this.handleChange2.bind(this)}
                             />
                             <InputGroup.Button>
-                                <Button type="submit">
-                                    <Glyphicon glyph="search" />
+                                <Button type="compare">
+                                Compare
                                 </Button>
                             </InputGroup.Button>
 
@@ -50,4 +51,4 @@ class SearchBar extends Component {
     }
 }
 
-export default SearchBar;
+export default Compare;
