@@ -59,20 +59,6 @@ It's worth mentioning that we were able to iterate over different classification
 ## Front end
 Our testing approach in our React.js front end application was mainly integration tests as there was not much logic delegated to the front end itself. We were mainly interested in whether we were correctly receiving data and that it was in the right format. We made sure that score values were valid and within the expected boundaries and that URLs and timestamps were in the correct format witht the help of regular expressions. This was repeated for all of our service functions that interact with the back end REST API.
 
-We tested all of these factors against a local instance of elastic search, populated with a testing dataset. Idempotency was tested by making sure search results stayed the same between multiple `GET` requests, the LRU cache was tested on the expected number of hits against the dataset, and the HTTP protocols were tested with every request invocation.  
-
-### Spam Classifier 
-An issue we faced in our initial iteration was that our posts were not quite representative of our task. Specifically, we found that a large chunk of our dataset was filled with spammy content, such as "free courses" and general tech advertisement.  This was not ideal since our goal was to extract sentiment from *opinionated posts* about technology.
-
-To mitigate this, we built a spam-classifier, leveraging out-of-the-box libraries such as [sklearn](https://scikit-learn.org/), and training it on a general-purpose dataset. We tested the classifier against spammy content we were likely to encounter and iteratively tweaked its parameters for best results. 
-
-We observed a noticeable improvement in the quality of posts, although it wasn't perfect. This is mostly likely because training dataset was more general-purpose than targeted to our domain. 
-
-It's worth mentioning that we were able to iterate over different classification heuristics because of our design decision to make it easier to create and delete elasticsearch indices on the fly. This meant that if our spam classifer did not work well at all, we could easily delete the associated index and create a new one. 
-
-## Front end
-Our testing approach in our React.js front end application was mainly integration tests as there was not much logic delegated to the front end itself. We were mainly interested in whether we were correctly receiving data and that it was in the right format. We made sure that score values were valid and within the expected boundaries and that URLs and timestamps were in the correct format witht the help of regular expressions. This was repeated for all of our service functions that interact with the back end REST API.
-
 The testing framework we used was Jest.js.
 
 ## Continuous Integration
