@@ -82,11 +82,16 @@ export default class SearchBar extends Component {
         );
     }
 
+    handleSubmit(e) {
+        this.handleBlur();
+        this.props.handleSubmit(e);
+    }
+
     render() {
 
         return (
             <div className="search-bar">
-                <form onSubmit={this.handleBlur & this.props.handleSubmit} autocomplete="off">
+                <form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <div className="autocomplete">
                             <InputGroup>
