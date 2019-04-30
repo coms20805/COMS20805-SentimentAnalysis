@@ -13,7 +13,7 @@ export default class GuideBox extends Component {
         return(
             <div className="guide-box">
                 <div className="step">
-                    <p>Search for open source libraries, programming languages, etc.</p>
+                    <p>Search for open source libraries and programming languages</p>
                     <Glyphicon glyph="search" />
                 </div>
                 <div className="step">
