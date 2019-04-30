@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar";
 import SearchService from "../api/SearchService";
 import * as qs from "query-string";
 import RatingBox from "./RatingBox";
+import GuideBox from "./GuideBox";
 import PostList from "./Post/PostList";
 import {withRouter} from "react-router-dom";
 import PlotLayout from "./PlotLayout";
@@ -84,11 +85,13 @@ class ResultsLayout extends Component {
         else if (!this.state.posts) {
             results = <div className="vertical-center">
                         <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                        <GuideBox />
                     </div>;
         }
         else if (this.state.posts.length === 0) {
             results = <div>
                         <SearchBar handleSubmit={this.handleSubmit.bind(this)} value={this.state.query} />
+                        <GuideBox />
                         <p>No results</p>
                     </div>;
         }
