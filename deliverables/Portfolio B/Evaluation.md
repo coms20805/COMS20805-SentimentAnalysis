@@ -9,7 +9,7 @@ This research was conducted using an online questionnaire the participants could
 We conducted this study by having a task based interview with the participants, asking them to search for a query and tell us what the results suggest about the query. On the first attempt there were 4 successful and 3 unsuccessful tries from the participants. We found that when users were not provided any context as to what to search for, they would search for irrelevant queries leading to a failed entry. However if information was provided, there were no failed attempts. Given an appropriate query, it took around 1 to 2 seconds for the results to be displayed. Partakers were satisfied with this. In addition, users who provided a suitable query took on average about 5 seconds to interpret the results displayed. In conclusion, we deduced that users interpret the results well and understand the main purpose of the site provided some context is provided.
 
 ## Conclusion
-Based on our evaluation study, our final changes to our development stage are as follows:
+Based on our evaluation study, our final changes to our development stage were as follows:
 
 ### Stage 1
 1. Search Service provided.

@@ -12,7 +12,7 @@ The overall structure of the application will be as follows:
 ## Post and Scraper Class Diagrams (Static UML)
 ![Class diagram](includes/class-diagram.png)
 
-These are the class diagrams for the Post and Scraper classes within our application. The Post class is an important one in our system as Post objects will form the basis for our Elasticsearch database. This diagram illustrates the structure of a Post object and its relationship with the scrapers.
+These are the class diagrams for the Post and Scraper classes within our application. The Post class is an important one in our system as Post objects will form the basis for our Elasticsearch database. This diagram illustrates the structure of a Post object and its relationship with the scrapers. Having the *TwitterScraper* class inherit from the abstract class *Scraper* made our design flexible and easy to extend by adding more scraper classes.
 
 ## Sequence Diagram (Dynamic UML)
 ![Sequence diagram](includes/sequence-diagram.png)
