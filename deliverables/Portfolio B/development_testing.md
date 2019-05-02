@@ -12,29 +12,29 @@ We designed, implemented, and tested a custom API that provided a simpler interf
 
 * Post Insertion
 * Post Deletion 
-* Post Searching strategies 
+* Post Searching Strategies 
 * Index Creation
 
-We tested these methods aginst a suite of unit-tests, making sure that we tested edge-cases such as inserting duplicate posts and deleting non-existent posts. We also used and tested fuzzy matching so that we could match against posts even if the seach query had a typo in it. 
+We tested these methods against a suite of unit-tests, making sure that we tested edge-cases such as inserting duplicate posts and deleting non-existent posts. We also used and tested fuzzy matching so that we could match against posts even if the search query had a typo in it. 
 
 
 ### Python modules
 
 ### Scraper
 
-To populate our elasticsearch instance, we wrote a cron-job that would go through a list of selected topics, fetch posts up to a certain limit for each topic, then insert these posts into our instance. 
+To populate our elasticsearch instance, we wrote a cron-job that would go through a list of selected topics, fetch posts up to a certain limit for each topic and then insert these posts into our instance. 
 
 We used Twitter as our source of data, leveraging its API to collect tweets (which, in later iterations, would be run through a spam classifier).
 
 We made a conscious design choice to not allow users to dynamically update our list of topics. The reason was two-fold:
 
-* Limited Storage: We are using a [free-tier elasticsearch instance](https://bonsai.io/) that caps out a [certain capacity](https://bonsai.io/pricing). Thus, if we allowed dynamic updates, then it would be hard to predict when we would run out of space. We would have to design new protocols that would limit the number of topics that can be added, and limit how many posts we can collect per new topic. This becomes every more challenging considering the next point.
+* Limited Storage: We are using a [free-tier elasticsearch instance](https://bonsai.io/) that caps out a [certain capacity](https://bonsai.io/pricing). Thus, if we allowed dynamic updates, then it would be hard to predict when we would run out of space. We would have to design new protocols that would limit the number of topics that can be added, and limit how many posts we can collect per new topic. This becomes ever more challenging considering the next point.
 
-* Spam: Our current list was deliberately chosen as we knew it would return posts that would more-or-less conform to our requirements. Given that we did not build a spam classifier initially, allowing dynamic topic updates would mean that we would have no idea whether our scraper was scraping legitimate or spammy content, until it was too late. This was a tradeoff we were *not* willing to make. (Even with a general spam classifier several iterations later, *accurately* classifying a post as spam/non-spam still remains a problem difficult enough that it deters us from allowing dynamic updates)  
+* Spam: Our current list was deliberately chosen as we knew it would return posts that would more-or-less conform to our requirements. Given that we did not build a spam classifier initially, allowing dynamic topic updates would mean that we would have no idea whether our scraper was scraping legitimate or spammy content, until it was too late. This was a trade-off we were *not* willing to make. (Even with a general spam classifier several iterations later, *accurately* classifying a post as spam/non-spam still remains a problem difficult enough that it deters us from allowing dynamic updates)  
 
 
 ### Server
-We architected a REST API that allowed us to interact with our elasticsearch library, with the follwing goals in mind:
+We architected a REST API that allowed us to interact with our elasticsearch library, with the following goals in mind:
 * Idempotency 
 * Efficiency 
 * Proper Error Handling 
@@ -54,7 +54,7 @@ To mitigate this, we built a spam-classifier, leveraging out-of-the-box librarie
 
 We observed a noticeable improvement in the quality of posts, although it wasn't perfect. This is mostly likely because training dataset was more general-purpose than targeted to our domain. 
 
-It's worth mentioning that we were able to iterate over different classification heuristics because of our design decision to make it easier to create and delete elasticsearch indices on the fly. This meant that if our spam classifer did not work well at all, we could easily delete the associated index and create a new one. 
+It's worth mentioning that we were able to iterate over different classification heuristics because of our design decision to make it easier to create and delete elasticsearch indices on the fly. This meant that if our spam classifier did not work well at all, we could easily delete the associated index and create a new one. 
 
 ## Front end
 Our testing approach in our React.js front end application was mainly integration tests as there was not much logic delegated to the front end itself. We were mainly interested in whether we were correctly receiving data and that it was in the right format. We made sure that score values were valid and within the expected boundaries and that URLs and timestamps were in the correct format witht the help of regular expressions. This was repeated for all of our service functions that interact with the back end REST API.
