@@ -11,7 +11,7 @@
   * Martin Noruisis
 3. **Supporting Team**
   * **Resource Managers** at the University of Bristol. They will be providing us with funding and resources if necessary.
-  * **Our Mentor** Nuha Tumia, a third-year student. She will be helping us with any technical difficulties, throughout the development stage.
+  * **Our Mentor** Nuha Tumia, a third-year student. She will be helping us with any technical difficulties throughout the development stage.
   * **Development Managers** Dr Daniel Schien and Dr Simon Lock. They will be supervising and teaching us the fundamentals of software development throughout the stages of development and testing.
 
 ### External Stakeholders
@@ -34,11 +34,8 @@ We have identified two examples of use case goals.
 1. User enters a query
 1. User searches for query
 1. User is presented with an option to hide or show a graph containing sentiment scores of each post.
-1. User is presented with a results box containing sentiment scores of certain posts related to the first query followed by its url and time stamp.
-3. User is shown an option to search another framework to compare the first query's results with.
-4. User can search for a second query.
-5. User is presented with an option to hide or show a graph comparing the sentiment scores of the two queries.
-6. User interprets results and draws a conclusion about the sentiment towards query.
+1. User is presented with a results box containing sentiment scores of posts related to the query together with their URLs and timestamps.
+1. User interprets results and draws a conclusion about the prevailing sentiment towards the query.
 
 
 ![Diagram for goal "User – submit query and receive result"](includes/use-case3.png)
@@ -46,13 +43,13 @@ We have identified two examples of use case goals.
 ### Alternative Pathways
 
 #### User types in a malformed query
-Steps 1 to 3 are completed. However, the query entered is malformed. The query is run through the Elasticsearch engine. If there are no matches, *fuzzy matching* is performed. If posts are found. Steps 4 to 9 will resume. 
+Steps 1 to 3 are completed. However, the query entered is malformed. The query is run through the Elasticsearch engine. If there are no matches, *fuzzy matching* is performed. If posts are found. Steps 4 to 6 will resume. 
 
 
 ### Exceptional Pathways
 
 #### User types in an unrelated query regarding Open-source software
-Steps 1 to 3 are completed. However, the query is not related to Open-source software. The query is run through the Elasticsearch engine. If there are no matches, fuzzy matching is performed. If no posts are found, An error message is displayed suggesting the user  to enter a different query.
+Steps 1 to 3 are completed. However, the query is not related to open source software. The query is run through the Elasticsearch engine. If there are no matches, fuzzy matching is performed. If no posts are found, An error message is displayed suggesting the user  to enter a different query.
 
 ### "ML module: scrape for posts and populate the database" flow
 1. Run instances of the different scrapers
@@ -73,7 +70,7 @@ Steps 1 to 3 are completed. However, the query is not related to Open-source sof
 1. When a malformed query is provided, *fuzzy matching* will take place. The algorithm will find the posts with content that closely matches the original query.
 
 ### System
-1. Our RESTful API shall be *idempotent*. Our algorithm can be applied multiple times without affecting the result beyond initial application.
+1. Our REST API shall be *idempotent*. Our algorithm can be applied multiple times without affecting the result beyond initial application.
 1. The database will be updated at least once a week.
 1. The development team will be responsible for maintaining and updating the system, with new posts.
 
@@ -96,25 +93,26 @@ Steps 1 to 3 are completed. However, the query is not related to Open-source sof
 3. The software must load the graph in less than 5 seconds
 
 ###  Accessibility
- The software must be usable by a non-technical user.
+The software must be usable by a non-technical user.
+
 ### Legislative
- The software shall be released under the MIT licence.
+The software shall be released under the MIT licence.
 
 ### Ethical
-To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are scraping posts expressing both negative and positive opinions for all queries.
+To ensure that we are not biased against or towards particular pieces of software, we have to make sure that we are collecting posts expressing both negative and positive opinions for all queries.
 
- ---
+---
+
 ## Usability
- We will be aiming to make our software as interactive and efficient as possible by testing on its:
-  * **Success rate**: The accuracy of the algorithm will be tested using our questionnaire.
-  * **Efficiency**: This will be tested through the unit and system integration tests, to ensure our product delivers the result as fast as possible.
-  * **Memorability**: When a user returns to the application after a period of not using it, the user shall remember enough to use it effectively the next time.
-  * **User Interface**
-      * We aim to make our user interface as user-friendly as possible by:
-        * Keeping a minimalistic look so that everything will have a clear meaning.
-        * Having an instantly noticeable search bar with a *Call-To-Action* search button.
-
-  *We will be testing the usefulness of our application by conducting a qualitative and quantitative study.*
+We will be aiming to make our software as interactive and efficient as possible by testing on its:
+* **Success rate**: The accuracy of the algorithm will be tested using our questionnaire.
+* **Efficiency**: This will be tested through the unit andsystem integration tests, to ensure our product delivers theresult as fast as possible.
+* **Memorability**: When a user returns to the applicationafter a period of not using it, the user shall rememberenough to use it effectively the next time.
+* **User Interface**
+  * We shall aim to make our user interface as user-friendly as possible by:
+    * Keeping a minimalistic look so that everything will have a clear meaning.
+    * Having an instantly noticeable search bar witha *Call-To-Action* search button.
+* We will be testing the usefulness of our application byconducting a qualitative and quantitative study.
 
 #### User Interface Mock-ups
 ![Search bar](includes/mockup-searchbar.png)

@@ -4,9 +4,9 @@
 
 The overall structure of the application will be as follows:
 1. **Front end**: receives input from the user, communicates with server via a REST API to receive a result and outputs the result to the user
-1. **Server**: calculates the mean score for a query and mostly acts as a passthrough between the front end and the Python module. Handles authentication?
-1. **Elasticsearch wrapper**: prepares queries to go to the Elasticsearch instance. Keeps an LRU cache for efficient working of the historical median values endpoint.
-1. **Scraper**: Natural Language Processing algorithm coupled with various web scrapers – procures new posts and assigns them with sentiment scores, sends them to the Elasticsearch instance for storage
+1. **Server**: calculates the mean score for a query and mostly acts as a passthrough between the front end and the Python module.
+1. **Elasticsearch wrapper**: prepares queries to go to the Elasticsearch instance. Keeps an LRU cache for efficient working of the historical median values end point.
+1. **Scraper**: Natural Language Processing algorithm coupled with a Twitter API wrapper – procures new posts and assigns them with sentiment scores, sends them to the Elasticsearch instance for storage
 1. **Elasticsearch instance**: Stores posts together with calculated sentiment values
 
 ## Post and Scraper Class Diagrams (Static UML)
