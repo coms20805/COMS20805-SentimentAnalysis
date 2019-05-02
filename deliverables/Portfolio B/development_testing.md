@@ -2,7 +2,7 @@
 
 
 ## Challenges
-Testing is an underlying challenge when developing web applications. Different browsers, interfaces, security threats, and overall app integration were some of the issues we faced as developers. Since our web app was to be run on different browsers and environments, consistent usability was crucial. Additionally, since the app is the brand (or a component thereof), any inconsistency within the user experience may translate into a negative experience, affecting the brand and its potential growth. When testing usability, we faced issues with scalability and interactivity. Since every user is different, it was necessary for us to utilize a representative group to test the application across different browsers, using different devices. 
+Testing is an underlying challenge when developing web applications. Different browsers, interfaces, security threats, and overall app integration were some of the issues we faced as developers. Since our web app was to be run on different browsers and environments, consistent usability was crucial. Additionally, since the app is the brand (or a component thereof), any inconsistency within the user experience may translate into a negative experience, affecting the brand and its potential growth. When testing usability, we faced issues with scalability and interactivity. Since every user is different, it was necessary for us to utilize a representative group to test the application across different browsers, using different devices. We overcame these challenges by testing in an agile manner, where we took an incremental approach to test features as they were developed. We believe this was a good strategy as it supported DevOps and continious testing. And continuous testing is important to improving product quality. The following were the  approaches we took for each end.
 
 ## Back end
 
@@ -56,6 +56,7 @@ We observed a noticeable improvement in the quality of posts, although it was no
 
 It is worth mentioning that we were able to iterate over different classification heuristics because of our design decision to make it easier to create and delete Elasticsearch indices on the fly. This meant that if our spam classifier did not work well at all, we could easily delete the associated index and create a new one. 
 
+---
 ## Front end
 Our testing approach in our React.js front end application was mainly integration tests as there was not much logic delegated to the front end itself. We were mostly interested in whether we were correctly receiving data and that it was in the right format. We made sure that score values were valid and within the expected boundaries and that URLs and timestamps were in the correct format witht the help of regular expressions. This was repeated for all of our service functions that interact with the back end REST API.
 
